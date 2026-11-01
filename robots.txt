@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Verweist direkt auf deine Sitemap, damit der Bot sie sofort findet
+Sitemap: https://spawnitems.github.io/sitemap.xml
