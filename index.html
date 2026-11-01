@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpawnItems // Engineering, Parametric CAD, 3D-Printing & FPV Hub</title>
+  
+  <!-- SEO & OpenGraph Meta Tags for Google & Social Media Sharing -->
+  <meta name="description" content="SpawnItems Engineering & Maker Hub: Functional 3D printing models, parametric Fusion 360 CAD guides, interactive tolerance calculator, and custom FPV drone builds.">
+  <meta name="keywords" content="SpawnItems, 3D Printing, Fusion 360, Parametric CAD, MakerWorld, Printables, Bambu Lab A1, FPV Drones, Tolerance Calculator, 3D Druck Guides">
+  <meta name="author" content="SpawnItems">
+  <meta property="og:title" content="SpawnItems // Engineering, CAD & 3D-Printing Hub">
+  <meta property="og:description" content="Explore functional 3D models, use the interactive CAD Tolerance & Material Finder, and read 12 step-by-step 3D printing guides.">
+  <meta property="og:type" content="website">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0B0F17; color: #F9FAFB; }
+    h1, h2, h3, .font-display { font-family: 'Outfit', sans-serif; }
+    .bg-cad-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+    }
+    .bento-card {
+      background: rgba(17, 24, 39, 0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .bento-card:hover {
+      border-color: rgba(16, 185, 129, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.15);
+    }
+    .bento-card-amber:hover {
+      border-color: rgba(245, 158, 11, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px -15px rgba(245, 158, 11, 0.15);
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0B0F17; }
+    ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #374151; }
+    .prose-guide h3 { color: #10B981; font-size: 1.2rem; font-weight: 700; margin-top: 1.6rem; margin-bottom: 0.6rem; font-family: 'Outfit', sans-serif; }
+    .prose-guide h4 { color: #F59E0B; font-size: 1.05rem; font-weight: 600; margin-top: 1.2rem; margin-bottom: 0.4rem; }
+    .prose-guide p { margin-bottom: 1rem; color: #D1D5DB; line-height: 1.75; }
+    .prose-guide ul, .prose-guide ol { padding-left: 1.5rem; margin-bottom: 1.2rem; color: #D1D5DB; }
+    .prose-guide ul { list-style-type: disc; }
+    .prose-guide ol { list-style-type: decimal; }
+    .prose-guide li { margin-bottom: 0.5rem; line-height: 1.65; }
+    .glossary-box { background: rgba(16, 185, 129, 0.06); border-left: 3px solid #10B981; padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0; }
+    .story-box { background: rgba(245, 158, 11, 0.07); border-left: 3px solid #F59E0B; padding: 1rem 1.25rem; border-radius: 0.5rem; margin: 1.25rem 0; }
+  </style>
+</head>
+<body class="bg-cad-grid min-h-screen selection:bg-emerald-500 selection:text-gray-900">
+
+  <!-- Ambient Glows -->
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+  <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+  <!-- Sticky Navbar -->
+  <nav class="sticky top-0 z-40 bg-[#0B0F17]/85 backdrop-blur-xl border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-emerald-600 p-0.5 shadow-lg shadow-emerald-500/20 group-hover:shadow-emerald-500/40 transition-all">
+          <div class="w-full h-full bg-[#0B0F17] rounded-[10px] flex items-center justify-center">
+            <i data-lucide="box" class="w-5 h-5 text-emerald-400 group-hover:rotate-12 transition-transform"></i>
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-bold text-xl tracking-tight text-white">Spawn<span class="text-emerald-400">Items</span></span>
+          <span class="hidden sm:inline-block ml-2 text-[10px] font-mono uppercase tracking-widest px-2 py-0.5 rounded bg-white/5 text-gray-400 border border-white/10">CAD × 3D × FPV</span>
+        </div>
+      </a>
+
+      <div class="hidden lg:flex items-center space-x-6 text-sm font-medium text-gray-300">
+        <a href="#about" class="hover:text-emerald-400 transition-colors" data-i18n="nav_about">About</a>
+        <a href="#models" class="hover:text-emerald-400 transition-colors" data-i18n="nav_models">3D Models</a>
+        <a href="#fpv" class="hover:text-amber-400 transition-colors" data-i18n="nav_fpv">FPV & Tech</a>
+        <a href="#tutorials" class="hover:text-emerald-400 transition-colors" data-i18n="nav_tutorials">Tools & Guides (12)</a>
+        <a href="#news" class="hover:text-amber-400 transition-colors" data-i18n="nav_news">24h News & Archive</a>
+        <a href="#platforms" class="hover:text-emerald-400 transition-colors" data-i18n="nav_platforms">Platforms</a>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <button id="langToggle" class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono uppercase tracking-wider text-emerald-400 transition-all cursor-pointer">
+          <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+          <span id="langLabel">EN | DE</span>
+        </button>
+        <a href="https://www.youtube.com/@SpawnItems" target="_blank" class="p-2 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-400 transition-all" title="SpawnItems YouTube">
+          <i data-lucide="youtube" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative pt-24 pb-20 px-6 overflow-hidden">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono uppercase tracking-widest mb-8">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span data-i18n="hero_badge">Digital Logic × Physical Hardware</span>
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]">
+        <span class="bg-gradient-to-r from-white via-gray-100 to-gray-400 bg-clip-text text-transparent">SpawnItems</span>
+        <span class="block mt-2 bg-gradient-to-r from-emerald-400 via-teal-300 to-amber-400 bg-clip-text text-transparent" data-i18n="hero_title">Engineering & Maker Hub</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-400 font-normal leading-relaxed mb-10" data-i18n="hero_sub">
+        Bridging enterprise IT & Industry 4.0 automation with precision parametric CAD design, functional 3D printing, and custom FPV drone engineering.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href="#models" class="inline-flex items-center space-x-2 px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold shadow-lg shadow-emerald-500/25 transition-all">
+          <i data-lucide="layers" class="w-5 h-5"></i>
+          <span data-i18n="btn_explore_models">Explore 3D Creations</span>
+        </a>
+        <a href="#tutorials" class="inline-flex items-center space-x-2 px-7 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-semibold transition-all">
+          <i data-lucide="sliders" class="w-5 h-5 text-emerald-400"></i>
+          <span data-i18n="btn_read_tutorials">Tolerance Finder & 12 Guides</span>
+        </a>
+        <a href="#news" class="inline-flex items-center space-x-2 px-7 py-3.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 font-semibold transition-all">
+          <i data-lucide="radio" class="w-5 h-5 text-amber-400"></i>
+          <span data-i18n="btn_daily_news">24h Tech Pulse</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-14">
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400" data-i18n="about_kicker">First Principles Thinking</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="about_heading">Dual Identity: Systems & Hardware</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="bento-card p-8 rounded-2xl relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mb-6">
+            <i data-lucide="cpu" class="w-6 h-6 text-emerald-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-white" data-i18n="about_c1_title">Professional DNA // IT & Industry 4.0</h3>
+          <p id="about-c1-text" class="text-gray-300 leading-relaxed mb-6"></p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-emerald-300">Industrial Automation & Robotics</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-gray-300">IT Systems Administration</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-gray-300">2nd-Level Team Lead</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-gray-300">First-Principles Architecture</span>
+          </div>
+        </div>
+
+        <div class="bento-card bento-card-amber p-8 rounded-2xl relative overflow-hidden">
+          <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-6">
+            <i data-lucide="compass" class="w-6 h-6 text-amber-400"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-white" data-i18n="about_c2_title">The Maker Soul // Parametric CAD & FPV</h3>
+          <p id="about-c2-text" class="text-gray-300 leading-relaxed mb-6"></p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-300">Fusion 360</span>
+            <span class="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-xs font-mono text-emerald-300">SolidCraft (MCP AI-CAD)</span>
+            <span class="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-gray-400">Blender (rusty 😅)</span>
+            <span class="px-3 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-xs font-mono text-amber-300">Bambu Lab A1 (PLA/PETG/TPU)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured 3D-Print Projects -->
+  <section id="models" class="py-20 px-6 bg-[#111827]/50 border-y border-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400" data-i18n="models_kicker">Engineered to Print</span>
+          <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="models_heading">Featured 3D-Print Creations</h2>
+        </div>
+        <p class="text-gray-400 text-sm mt-2 md:mt-0" data-i18n="models_sub">Functional parts, ergonomic tools, and geometric art designed from scratch.</p>
+      </div>
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- FPV Drone Hangar & Tech Stack -->
+  <section id="fpv" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-amber-400" data-i18n="fpv_kicker">High-Speed Telemetry & Custom Builds</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="fpv_heading">FPV Drone Hangar & Hardware</h2>
+      </div>
+      <div id="fpv-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Tutorials Section + Interactive Tolerance & Material Quick-Finder -->
+  <section id="tutorials" class="py-20 px-6 bg-[#111827]/40 border-y border-white/5">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- INTERACTIVE TOLERANCE & MATERIAL QUICK-FINDER WIDGET -->
+      <div class="bento-card p-6 sm:p-8 rounded-2xl mb-16 border-emerald-500/30 relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
+          <div>
+            <div class="inline-flex items-center space-x-2 text-xs font-mono uppercase tracking-widest text-emerald-400 mb-2">
+              <i data-lucide="sliders" class="w-4 h-4"></i>
+              <span data-i18n="calc_kicker">Interactive Workshop Tool</span>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold text-white" data-i18n="calc_title">CAD Tolerance & Material Quick-Finder</h3>
+            <p class="text-gray-400 text-sm mt-1" data-i18n="calc_sub">Select your filament and mechanical joint type to get instant, tested parameters for Fusion 360 and your slicer.</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 shrink-0">
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-gray-400 mb-1.5" data-i18n="calc_lbl_mat">1. Select Filament</label>
+              <select id="calcMaterial" onchange="updateCalculator()" class="w-full bg-[#0B0F17] border border-white/15 focus:border-emerald-400 rounded-xl px-4 py-2.5 text-sm font-mono text-white outline-none cursor-pointer">
+                <option value="PLA">PLA / PLA+ (Rigid & Crisp)</option>
+                <option value="PETG">PETG (Tough & Weatherproof)</option>
+                <option value="TPU">TPU 95A (Flexible & Elastic)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-mono uppercase text-gray-400 mb-1.5" data-i18n="calc_lbl_fit">2. Select Joint / Application</label>
+              <select id="calcFit" onchange="updateCalculator()" class="w-full bg-[#0B0F17] border border-white/15 focus:border-emerald-400 rounded-xl px-4 py-2.5 text-sm font-mono text-white outline-none cursor-pointer">
+                <option value="sliding" data-i18n="fit_opt_sliding">Sliding Lid / Box Fit</option>
+                <option value="press" data-i18n="fit_opt_press">Press-Fit (Permanent / Tight)</option>
+                <option value="snap" data-i18n="fit_opt_snap">Snap-Fit Clip / Hook</option>
+                <option value="hinge" data-i18n="fit_opt_hinge">Moving Hinge / Print-in-Place</option>
+                <option value="thread" data-i18n="fit_opt_thread">3D-Printed Screw Thread (>M12)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Output Metrics -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+          <div class="bg-[#0B0F17]/90 border border-emerald-500/30 p-4 rounded-xl">
+            <div class="text-[11px] font-mono uppercase text-gray-400" data-i18n="res_lbl_gap">CAD Offset (Per Side)</div>
+            <div id="resGap" class="text-2xl font-display font-bold text-emerald-400 mt-1">0.15 mm</div>
+          </div>
+          <div class="bg-[#0B0F17]/90 border border-white/10 p-4 rounded-xl">
+            <div class="text-[11px] font-mono uppercase text-gray-400" data-i18n="res_lbl_temp">Nozzle / Bed Temp</div>
+            <div id="resTemp" class="text-xl font-display font-bold text-white mt-1">215°C / 60°C</div>
+          </div>
+          <div class="bg-[#0B0F17]/90 border border-white/10 p-4 rounded-xl">
+            <div class="text-[11px] font-mono uppercase text-gray-400" data-i18n="res_lbl_fan">Part Cooling Fan</div>
+            <div id="resFan" class="text-xl font-display font-bold text-amber-400 mt-1">100% (Layer 1: 0%)</div>
+          </div>
+          <div class="bg-[#0B0F17]/90 border border-white/10 p-4 rounded-xl">
+            <div class="text-[11px] font-mono uppercase text-gray-400" data-i18n="res_lbl_walls">Recommended Walls</div>
+            <div id="resWalls" class="text-xl font-display font-bold text-emerald-300 mt-1">3–4 Walls (1.6 mm)</div>
+          </div>
+        </div>
+        <div class="bg-emerald-500/10 border border-emerald-500/20 rounded-xl px-4 py-3 flex items-start space-x-3 text-xs text-gray-200">
+          <i data-lucide="lightbulb" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+          <p id="resTip" class="leading-relaxed"></p>
+        </div>
+      </div>
+
+      <!-- 12 Tutorials Header & Filter -->
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-10 gap-6">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-widest text-emerald-400" data-i18n="tut_kicker">Beginner Friendly (10/10) × Pro Depth</span>
+          <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="tut_heading">12 Essential 3D-Printing & CAD Guides</h2>
+          <p class="text-gray-400 text-sm mt-2" data-i18n="tut_sub">Step-by-step instructions, clear glossary definitions for beginners, and exact engineering parameters.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterTutorials('all')" id="filter-all" class="px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider bg-emerald-500 text-gray-950 font-semibold transition-all cursor-pointer" data-i18n="filter_all">All Guides (12)</button>
+          <button onclick="filterTutorials('CAD')" id="filter-cad" class="px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all cursor-pointer" data-i18n="filter_cad">CAD & Construction (6)</button>
+          <button onclick="filterTutorials('3D')" id="filter-3d" class="px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all cursor-pointer" data-i18n="filter_3d">3D Printing & Slicing (6)</button>
+        </div>
+      </div>
+      <div id="tutorials-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- News & Archive Section (24h Storyteller Pulse) -->
+  <section id="news" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <div class="inline-flex items-center space-x-2">
+            <span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span>
+            <span class="text-xs font-mono uppercase tracking-widest text-amber-400" data-i18n="news_kicker">24-Hour Automated Tech Pulse</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="news_heading">Daily Maker News & Future Impact</h2>
+          <p class="text-gray-400 text-sm mt-2" data-i18n="news_sub">What is happening right now, how it affects us as everyday makers, and where the technology is heading next.</p>
+        </div>
+        <div class="flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2.5 rounded-xl text-xs font-mono text-gray-300">
+          <i data-lucide="refresh-cw" class="w-4 h-4 text-emerald-400"></i>
+          <span id="newsSyncBadge">24h Sync Active</span>
+        </div>
+      </div>
+
+      <!-- Active 24h News Grid -->
+      <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"></div>
+
+      <!-- Archive Table -->
+      <div class="bento-card rounded-2xl overflow-hidden p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+          <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+            <i data-lucide="archive" class="w-5 h-5 text-emerald-400"></i>
+            <span data-i18n="archive_title">24h Rotation History & Verified Sources Archive</span>
+          </h3>
+          <span class="text-xs font-mono text-gray-400 bg-white/5 px-3 py-1 rounded-full border border-white/10" data-i18n="archive_badge">Click any row for full analysis & source links</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-gray-300">
+            <thead class="text-xs uppercase font-mono text-gray-400 border-b border-white/10">
+              <tr>
+                <th class="pb-3 px-4" data-i18n="th_date">Shown On</th>
+                <th class="pb-3 px-4" data-i18n="th_cat">Topic</th>
+                <th class="pb-3 px-4" data-i18n="th_headline">Headline & Deep-Dive</th>
+                <th class="pb-3 px-4" data-i18n="th_source">Verified Sources</th>
+              </tr>
+            </thead>
+            <tbody id="archive-tbody" class="divide-y divide-white/5"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platform Hub -->
+  <section id="platforms" class="py-20 px-6 bg-[#111827]/60 border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="text-xs font-mono uppercase tracking-widest text-emerald-400" data-i18n="plat_kicker">Download & Print</span>
+        <h2 class="text-3xl sm:text-4xl font-bold mt-2" data-i18n="plat_heading">Official 3D-Printing Platform Hub</h2>
+        <p class="text-gray-400 text-sm mt-2" data-i18n="plat_sub">Grab STL, STEP & 3MF files directly from verified creator profiles.</p>
+      </div>
+      <div id="platforms-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-white/10 bg-[#0B0F17]">
+    <div class="max-w-7xl mx-auto text-center text-gray-500 text-sm" data-i18n="footer_text">
+      © 2026 SpawnItems • Engineered from First Principles.
+    </div>
+  </footer>
+
+  <!-- MODAL POPUP -->
+  <div id="genericModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+    <div class="bg-[#111827] border border-white/15 w-full max-w-4xl max-h-[88vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden transform scale-95 transition-transform duration-300" id="modalContainer">
+      <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#0B0F17]">
+        <div class="flex items-center space-x-3">
+          <span id="modalBadge" class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">Badge</span>
+          <span id="modalMeta" class="text-xs font-mono text-gray-400">Meta</span>
+        </div>
+        <button id="closeModal" class="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors cursor-pointer" title="Close">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-gray-300 text-sm leading-relaxed prose-guide">
+        <h2 id="modalTitle" class="text-2xl sm:text-3xl font-bold text-white font-display">Title</h2>
+        <div id="modalContent"></div>
+      </div>
+      <div class="px-6 py-4 border-t border-white/10 bg-[#0B0F17] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div id="modalSourceLinkContainer" class="text-xs font-mono text-gray-400 flex flex-wrap items-center gap-2"></div>
+        <button id="closeModalBtn" class="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-gray-950 font-semibold text-xs uppercase tracking-wider transition-all cursor-pointer shrink-0">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. DEFAULT LANGUAGE IS ALWAYS ENGLISH ('en') ON PAGE LOAD
+    let currentLang = 'en';
+    let currentTutFilter = 'all';
+
+    // 2. COMPLETE UI & BUTTON TRANSLATION DICTIONARY
+    const uiStrings = {
+      en: {
+        nav_about: "About",
+        nav_models: "3D Models",
+        nav_fpv: "FPV & Tech",
+        nav_tutorials: "Tools & Guides (12)",
+        nav_news: "24h News & Archive",
+        nav_platforms: "Platforms",
+        hero_badge: "Digital Logic × Physical Hardware",
+        hero_title: "Engineering & Maker Hub",
+        hero_sub: "Bridging enterprise IT & Industry 4.0 automation with precision parametric CAD design, functional 3D printing, and custom FPV drone engineering.",
+        btn_explore_models: "Explore 3D Creations",
+        btn_read_tutorials: "Tolerance Finder & 12 Guides",
+        btn_daily_news: "24h Tech Pulse",
+        about_kicker: "First Principles Thinking",
+        about_heading: "Dual Identity: Systems & Hardware",
+        about_c1_title: "Professional DNA // IT & Industry 4.0",
+        about_c1_text: "Behind SpawnItems is Patrik Mozejko (based in Neuss, Germany). With a rock-solid background as an IT Support Specialist, System Administrator, and 2nd-Level Support Team Lead, my professional focus is transitioning into Industrial Automation & Robotics (Industry 4.0). I break complex technical systems down to first principles—combining structured planning, clear accountability, and hands-on execution.",
+        about_c2_title: "The Maker Soul // Parametric CAD & FPV",
+        about_c2_text: "Excited by technology, I discovered 3D printing—but simply printing existing files quickly got boring. So I decided to master parametric CAD design in Fusion 360 and SolidCraft (plus a tiny bit of Blender, even though I'm totally out of practice right now 😅). From custom FPV drone mounts to heavy-duty balcony planters printed in PLA, PETG & TPU on my Bambu Lab A1: if a part doesn't exist, I engineer it.",
+        models_kicker: "Engineered to Print",
+        models_heading: "Featured 3D-Print Creations",
+        models_sub: "Functional parts, ergonomic tools, and geometric art designed from scratch.",
+        fpv_kicker: "High-Speed Telemetry & Custom Builds",
+        fpv_heading: "FPV Drone Hangar & Hardware",
+        calc_kicker: "Interactive Workshop Tool",
+        calc_title: "CAD Tolerance & Material Quick-Finder",
+        calc_sub: "Select your filament and mechanical joint type to get instant, tested parameters for Fusion 360 and your slicer.",
+        calc_lbl_mat: "1. Select Filament",
+        calc_lbl_fit: "2. Select Joint / Application",
+        fit_opt_sliding: "Sliding Lid / Box Fit",
+        fit_opt_press: "Press-Fit (Permanent / Tight)",
+        fit_opt_snap: "Snap-Fit Clip / Hook",
+        fit_opt_hinge: "Moving Hinge / Print-in-Place",
+        fit_opt_thread: "3D-Printed Screw Thread (>M12)",
+        res_lbl_gap: "CAD Offset (Per Side)",
+        res_lbl_temp: "Nozzle / Bed Temp",
+        res_lbl_fan: "Part Cooling Fan",
+        res_lbl_walls: "Recommended Walls",
+        tut_kicker: "Beginner Friendly (10/10) × Pro Depth",
+        tut_heading: "12 Essential 3D-Printing & CAD Guides",
+        tut_sub: "Step-by-step instructions, clear glossary definitions for beginners, and exact engineering parameters.",
+        filter_all: "All Guides (12)",
+        filter_cad: "CAD & Construction (6)",
+        filter_3d: "3D Printing & Slicing (6)",
+        btn_open_guide: "Read Step-by-Step Guide →",
+        btn_open_model: "View 3D Model →",
+        btn_open_news: "Read Full Story & Impact →",
+        btn_open_profile: "Open Profile",
+        btn_close_modal: "Close Window",
+        news_kicker: "24-Hour Automated Tech Pulse",
+        news_heading: "Daily Maker News & Future Impact",
+        news_sub: "What is happening right now, how it affects us as everyday makers, and where the technology is heading next.",
+        archive_title: "24h Rotation History & Verified Sources Archive",
+        archive_badge: "Click any row for full analysis & source links",
+        th_date: "Shown On",
+        th_cat: "Topic",
+        th_headline: "Headline & Deep-Dive",
+        th_source: "Verified Sources",
+        plat_kicker: "Download & Print",
+        plat_heading: "Official 3D-Printing Platform Hub",
+        plat_sub: "Grab STL, STEP & 3MF files directly from verified creator profiles.",
+        footer_text: "© 2026 SpawnItems • Engineered from First Principles.",
+        lbl_sources: "Verified Further Reading & Sources:",
+        meta_guide: "Step-by-Step Guide • Beginner Friendly 10/10",
+        meta_news: "24h Tech Pulse • Story & Impact Analysis"
+      },
+      de: {
+        nav_about: "Über Mich",
+        nav_models: "3D-Modelle",
+        nav_fpv: "FPV & Tech",
+        nav_tutorials: "Tools & Guides (12)",
+        nav_news: "24h News & Archiv",
+        nav_platforms: "Plattformen",
+        hero_badge: "Digitale Logik × Physische Hardware",
+        hero_title: "Engineering & Maker Hub",
+        hero_sub: "Die Verbindung aus Enterprise-IT & Industrie 4.0 Automatisierung mit hochpräzisem parametrischen CAD-Design, funktionalem 3D-Druck und Custom FPV-Drohnen.",
+        btn_explore_models: "3D-Modelle entdecken",
+        btn_read_tutorials: "Toleranz-Finder & 12 Guides",
+        btn_daily_news: "24h Tech-Puls",
+        about_kicker: "First Principles Thinking",
+        about_heading: "Dual Identity: Systeme & Hardware",
+        about_c1_title: "Berufliche DNA // IT & Industrie 4.0",
+        about_c1_text: "Hinter SpawnItems steht Patrik Mozejko (aus Neuss). Mit einem starken Fundament als IT Support Specialist, Systemadministrator und 2nd-Level Support Team Lead führt mein beruflicher Weg gezielt in die industrielle Automatisierung & Robotik (Industrie 4.0). Ich zerlege komplexe technische Herausforderungen bis auf ihre Grundprinzipien (First Principles) – pragmatisch, strukturiert und lösungsorientiert.",
+        about_c2_title: "Maker-Leidenschaft // CAD, 3D-Druck & FPV",
+        about_c2_text: "Von Technologie begeistert, entdeckte ich den 3D-Druck. Nur fremde Dateien zu drucken war mir aber schnell zu langweilig – also habe ich das eigene Konstruieren in Fusion 360 und SolidCraft gemeistert (plus ein kleines bisschen Blender, auch wenn ich da aktuell total aus der Übung bin 😅). Gedruckt wird auf dem Bambu Lab A1 mit PLA, PETG und TPU – vom eigenen Balkon-System bis zum FPV-Drohnen-Bauteil.",
+        models_kicker: "Konstruiert für den Druck",
+        models_heading: "Ausgewählte 3D-Druck-Kreationen",
+        models_sub: "Funktionale Bauteile, ergonomische Werkzeuge und geometrische Kunst – von Grund auf selbst entwickelt.",
+        fpv_kicker: "High-Speed Telemetrie & Custom Builds",
+        fpv_heading: "FPV-Drohnen Hangar & Hardware",
+        calc_kicker: "Interaktives Werkstatt-Tool",
+        calc_title: "CAD Spaltmaß- & Material-Finder",
+        calc_sub: "Wähle dein Filament und die Verbindungsart für sofortige, praxiserprobte Fusion-360- und Slicer-Werte.",
+        calc_lbl_mat: "1. Filament wählen",
+        calc_lbl_fit: "2. Verbindung / Bauteil-Art",
+        fit_opt_sliding: "Schiebedeckel / Sortierbox-Passung",
+        fit_opt_press: "Presspassung (Stramm / Dauerhaft)",
+        fit_opt_snap: "Schnappverschluss / Clip (Snap-Fit)",
+        fit_opt_hinge: "Bewegliches Scharnier / Gelenk",
+        fit_opt_thread: "Gedrucktes Schraubgewinde (>M12)",
+        res_lbl_gap: "CAD Spaltmaß (Pro Seite)",
+        res_lbl_temp: "Düsen- / Betttemperatur",
+        res_lbl_fan: "Bauteillüfter",
+        res_lbl_walls: "Empfohlene Wände",
+        tut_kicker: "Anfängerfreundlich (10/10) × Profi-Tiefe",
+        tut_heading: "12 Essenzielle 3D-Druck & CAD Guides",
+        tut_sub: "Schritt-für-Schritt-Anleitungen, leicht verständliche Begriffserklärungen für Einsteiger und exakte Praxis-Werte.",
+        filter_all: "Alle Guides (12)",
+        filter_cad: "CAD & Konstruktion (6)",
+        filter_3d: "3D-Druck & Slicing (6)",
+        btn_open_guide: "Schritt-für-Schritt Guide lesen →",
+        btn_open_model: "Zum 3D-Modell →",
+        btn_open_news: "Ganze Story & Ausblick lesen →",
+        btn_open_profile: "Profil öffnen",
+        btn_close_modal: "Fenster schließen",
+        news_kicker: "24-Stunden Automatisierter Tech-Puls",
+        news_heading: "Tägliche Maker-News & Zukunfts-Ausblick",
+        news_sub: "Was passiert gerade in der Welt von 3D-Druck, CAD & FPV, was bedeutet das für uns Endanwender und wohin geht die Reise?",
+        archive_title: "24h-Rotations-Archiv & Verifizierte Quellen",
+        archive_badge: "Klicke auf eine Zeile für die komplette Story & Quellen-Links",
+        th_date: "Gezeigt am",
+        th_cat: "Bereich",
+        th_headline: "Schlagzeile & Hintergründe",
+        th_source: "Verifizierte Quellen",
+        plat_kicker: "Download & Druck",
+        plat_heading: "Offizieller 3D-Druck Plattform-Hub",
+        plat_sub: "Alle STL-, STEP- & 3MF-Dateien direkt auf meinen verifizierten Creator-Profilen.",
+        footer_text: "© 2026 SpawnItems • Entwickelt nach First Principles.",
+        lbl_sources: "Weiterführende Links & Quellen:",
+        meta_guide: "Schritt-für-Schritt Guide • Anfängerfreundlichkeit 10/10",
+        meta_news: "24h Tech-Puls • Story & Zukunfts-Analyse"
+      }
+    };
+
+    // INTERACTIVE TOLERANCE & MATERIAL CALCULATOR DATA
+    const calcMatrix = {
+      PLA: {
+        temp: "215°C / 60°C",
+        fan: "100% (L1: 0%)",
+        sliding: { gap: "0.15 mm", walls: "3 Walls (1.2 mm)", tip_en: "PLA has very low shrinkage. Use Q (Offset Face) by -0.15 mm on the inner wall and add a 0.6 mm bottom chamfer to prevent elephant's foot.", tip_de: "PLA schrumpft kaum. Versetze die Innenwand in Fusion 360 mit Taste Q um -0,15 mm und gib der Bodenkante eine 0,6-mm-Fase gegen Elefantenfuß." },
+        press:   { gap: "0.06 mm", walls: "4–5 Walls (1.8 mm)", tip_en: "For a tight press-fit in stiff PLA, 0.05 to 0.08 mm per side is ideal. Add a 45° lead-in chamfer so the pin centers itself before hammering.", tip_de: "Da PLA sehr hart ist, reichen 0,05 bis 0,08 mm Luft pro Seite für festen Sitz. Immer eine 45°-Einführfase an Bolzen und Loch setzen!" },
+        snap:    { gap: "0.18 mm", walls: "4 Walls (1.6 mm)", tip_en: "Caution: PLA is brittle under bending! Make the clip arm thinner (1.2–1.5 mm), longer, and add a generous 2.0 mm fillet at the root.", tip_de: "Achtung: PLA bricht bei Biegung schneller als PETG! Halte den Federarm lang und dünn (1,2–1,5 mm) und runde die Wurzel mit mind. 2,0 mm ab." },
+        hinge:   { gap: "0.30 mm", walls: "4 Walls (1.6 mm)", tip_en: "For print-in-place hinges in PLA, keep a 0.30 mm radial gap and use a 45° cone shape inside the hinge so no supports are needed.", tip_de: "Für Print-in-Place-Scharniere in PLA sind 0,30 mm Spaltmaß und ein 45°-Kegel im Gelenk ideal, damit nichts zusammenbäckt." },
+        thread:  { gap: "0.18 mm", walls: "4–5 Walls (2.0 mm)", tip_en: "Select a coarse pitch (>=1.75 mm), check 'Modeled' in Fusion 360, and offset thread flanks by -0.18 mm. Print at 0.16 mm layer height.", tip_de: "Grobe Steigung wählen (>=1,75 mm), Haken bei 'Modelliert' setzen und die Gewindeflanken mit Q um -0,18 mm zurücksetzen." }
+      },
+      PETG: {
+        temp: "240°C / 70°C",
+        fan: "35% (L1–3: 0%)",
+        sliding: { gap: "0.20 mm", walls: "4 Walls (1.6 mm)", tip_en: "PETG flows slightly wider and has higher surface friction than PLA. Give sliding lids 0.20 mm clearance so they don't bind.", tip_de: "PETG quillt leicht stärker auf als PLA und hat mehr Reibung. Plane bei Deckeln und Einschüben 0,20 mm Luft pro Seite ein." },
+        press:   { gap: "0.08 mm", walls: "5 Walls (2.0 mm)", tip_en: "PETG is slightly compliant and forgiving for press-fits. 0.08 mm per side gives a rock-solid mechanical lock without cracking the outer ring.", tip_de: "PETG gibt minimal nach und sprengt Außenringe nicht so leicht wie PLA. Mit 0,08 mm Spaltmaß sitzt der Bolzen bombenfest." },
+        snap:    { gap: "0.20 mm", walls: "4–5 Walls (1.8 mm)", tip_en: "PETG is the king of snap-fits! Its elasticity allows hundreds of bending cycles. Print the clip lying flat on the bed for maximum strength.", tip_de: "PETG ist das perfekte Material für Schnappverschlüsse und WAGO-Halter! Drucke den Clip liegend auf dem Bett für maximale Federkraft." },
+        hinge:   { gap: "0.35 mm", walls: "4 Walls (1.6 mm)", tip_en: "Because PETG loves to bond to itself and string slightly, increase print-in-place hinge clearance to 0.35 mm and dry the filament first!", tip_de: "Da PETG extrem stark haftet, solltest du bei beweglichen Gelenken auf 0,35 mm Spaltmaß gehen, damit sich das Gelenk nach dem Druck leicht löst." },
+        thread:  { gap: "0.22 mm", walls: "5 Walls (2.0 mm)", tip_en: "PETG threads are super durable for outdoor planters and mounts. Offset flanks by -0.22 mm and flatten the sharp thread crest by 0.15 mm.", tip_de: "PETG-Gewinde sind ideal für den Balkon und Außenbereich. Versetze die Flanken um -0,22 mm und flache die Gewindespitzen leicht ab." }
+      },
+      TPU: {
+        temp: "225°C / 45°C",
+        fan: "50% (Slow Speed!)",
+        sliding: { gap: "0.10 mm", walls: "3–4 Walls (1.6 mm)", tip_en: "Since TPU is flexible like rubber, dust caps and sleeves should have a slight friction fit (0.05–0.10 mm) so they hug the part snugly.", tip_de: "Da TPU gummiartig nachgibt, dürfen Schutzkappen und Hüllen mit 0,05–0,10 mm ruhig straff sitzen, damit sie nicht von selbst abrutschen." },
+        press:   { gap: "-0.15 mm (Undersize!)", walls: "4 Walls + 25% Gyroid", tip_en: "Pro Trick for TPU mounts (FPV camera/antenna holders): Model the hole 0.15 mm SMALLER than the carbon post! The TPU stretches and clamps tightly.", tip_de: "Profi-Trick für FPV-Mounts & Dämpfer: Zeichne das Loch im TPU ruhig 0,15 mm KLEINER als das Rohr – das Gummi dehnt sich und klemmt perfekt!" },
+        snap:    { gap: "0.05 mm", walls: "4 Walls (1.6 mm)", tip_en: "TPU straps and latches never snap off. Use a larger catch hook (2.5 mm) because flexible hooks can slip out if the lip is too small.", tip_de: "TPU-Laschen brechen niemals ab. Mache die Rastnase dafür etwas größer (ca. 2,5 mm Überstand), damit sie sich unter Zug nicht herauswindet." },
+        hinge:   { gap: "0.00 mm (Living Hinge!)", walls: "3 Bottom Layers (0.6 mm)", tip_en: "With TPU you don't need mechanical pin hinges! Just print a flat 0.6 mm (3 layers) connecting bridge—it bends millions of times like leather.", tip_de: "Bei TPU brauchst du kein Gelenkspiel! Drucke einfach eine 0,6 mm dünne Verbindungsbrücke (3 Schichten) – ein unzerstörbares Filmscharnier." },
+        thread:  { gap: "0.25 mm", walls: "5 Walls (2.0 mm)", tip_en: "Only use very coarse trapezoidal threads in TPU (e.g. coil pitch >= 3.0 mm) and print at max 3.5 mm³/s volumetric speed.", tip_de: "In weichem TPU funktionieren nur sehr grobe Trapez-Gewinde (Steigung >= 3,0 mm). Volumengeschwindigkeit im Slicer auf 3,5 mm³/s begrenzen!" }
+      }
+    };
+
+    function updateCalculator() {
+      const mat = document.getElementById('calcMaterial').value;
+      const fit = document.getElementById('calcFit').value;
+      const data = calcMatrix[mat];
+      const fitData = data[fit];
+
+      document.getElementById('resGap').textContent = fitData.gap;
+      document.getElementById('resTemp').textContent = data.temp;
+      document.getElementById('resFan').textContent = data.fan;
+      document.getElementById('resWalls').textContent = fitData.walls;
+      document.getElementById('resTip').textContent = currentLang === 'de' ? fitData.tip_de : fitData.tip_en;
+    }
+
+    const projectsData = [
+      { badge: "Viral 3D Printer Mod", icon: "trash-2", title_en: '"Shit Happens" – Universal Poop Container', title_de: '"Mist passiert" – Universal-Purge-Behälter', desc_en: "Clever, universal purge & waste chute container for 3D printers.", desc_de: "Cleverer, universeller Auffangbehälter für 3D-Drucker-Purge-Reste.", stats: "5,700+ Views • 445 Downloads", link: "https://www.crealitycloud.com/de/user/6663663058/model" },
+      { badge: "Ergonomics & Tools", icon: "wrench", title_en: "Print-Grips Series (Pro & Advanced)", title_de: "Print-Grips Serie (Pro & Advanced)", desc_en: "Three-tier ergonomic grip system with precision knurling.", desc_de: "Dreistufige ergonomische Griff-Serie mit präziser Rändelung.", stats: "320+ Downloads • 3 Variants", link: "https://www.printables.com/@SpawnItems_2202114/models" },
+      { badge: "Organization", icon: "grid", title_en: "Modular Puzzle Sorting Boxes", title_de: "Stapelbare Sortierboxen für Puzzles", desc_en: "Interlocking, stackable sorting trays with puzzle geometry.", desc_de: "Ineinandergreifende, stapelbare Sortierschalen in Puzzle-Geometrie.", stats: "327+ Downloads • 170 Likes", link: "https://www.printables.com/@SpawnItems_2202114/models" },
+      { badge: "Balcony CAD", icon: "sprout", title_en: "Heavy-Duty Modular Plant Pot & Drainage", title_de: "Robuster Modularer Pflanztopf & Drainage", desc_en: "Weather-resistant planter with integrated water drainage architecture.", desc_de: "Wetterfester Pflanzkübel mit integriertem Drainage-System.", stats: "230+ Views • PETG/PLA Ready", link: "https://makerworld.com/de/@SpawnItems/upload" },
+      { badge: "Smart Home", icon: "zap", title_en: "WAGO 221 Mount x4 & Echo Dot 5 Mount", title_de: "WAGO 221 4x Halterung & Echo Dot 5 Mount", desc_en: "Snap-fit electrical terminal blocks and smart ceiling integration.", desc_de: "Präzise Snap-Fit Elektro-Halterungen und smarte Deckenmontagen.", stats: "1,100+ Views • Snap-Fit", link: "https://www.printables.com/@SpawnItems_2202114/models" },
+      { badge: "Design Art", icon: "sparkles", title_en: "Fractal Vase, Roman Vase & Signal Frog", title_de: "Fraktale Vase, Römische Vase & Signalfrosch", desc_en: "Mathematical spiral-vase geometries and organic character sculpts.", desc_de: "Mathematische Spiral-Vasen und organische Skulpturen.", stats: "6,500+ Views • 500+ Downloads", link: "https://thangs.com/designer/Patrik%20Spawn%27s%20Items" }
+    ];
+
+    const fpvData = [
+      { icon: "navigation", tag: "3.5-Inch Freestyle", title: "SpeedyBee Master 3X", desc_en: "Agile outdoor freestyle quadcopter built for crisp digital flight footage.", desc_de: "Agiler 3,5-Zoll FPV-Copter für präzisen Outdoor-Freestyle." },
+      { icon: "wind", tag: "75mm CineWhoop", title: "Meteor75 Pro O4 Lite", desc_en: "Ultra-light ducted whoop with digital HD transmission for tight indoor lines.", desc_de: "Kompakter 75mm Whoop mit digitaler O4 Lite Videoübertragung." },
+      { icon: "radio", tag: "Digital Link", title: "DJI Goggles N3 + Pocket", desc_en: "Immersive goggles paired with RadioMaster Pocket ELRS transmitter.", desc_de: "Kristallklare Immersion mit DJI Goggles N3 und RadioMaster Pocket." },
+      { icon: "printer", tag: "Rapid Prototyping", title: "Bambu Lab A1 + TPU/PETG", desc_en: "Custom camera mounts and antenna protectors printed in TPU.", desc_de: "Selbstkonstruierte TPU-Mounts und Antennenschützer vom A1." }
+    ];
+
+    // 3. 12 PERMANENT, DEEP-DIVE GUIDES (ONLY CAD & 3D PRINTING, >1,000 CHARS EACH, BEGINNER 10/10 + PRO)
+    const tutorialsData = [
+      {
+        group: "CAD",
+        cat_en: "CAD & Fusion 360", cat_de: "CAD & Fusion 360",
+        title_en: "1. Parametric Design & Master Variables",
+        title_de: "1. Parametrisches Konstruieren & Master-Variablen",
+        teaser_en: "How to build intelligent CAD models that adapt automatically when you change a single measurement.",
+        teaser_de: "Wie du intelligente CAD-Modelle baust, die sich bei Maßänderungen vollautomatisch selbst anpassen.",
+        sources: [
+          { name: "Autodesk Fusion 360 Documentation", url: "https://help.autodesk.com/view/fusion360/ENU/" },
+          { name: "Prusa 3D Modeling Guide", url: "https://help.prusa3d.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Parametric:</strong> Instead of drawing fixed lines, you use variables (like a spreadsheet). If you change "Width = 50mm" to "60mm", the entire 3D object updates automatically.</li>
+              <li><strong>Sketch Constraints:</strong> Rules that lock lines in place (e.g., "these two lines must always stay parallel" or "this circle stays centered").</li>
+              <li><strong>Timeline:</strong> The history bar at the bottom of Fusion 360 that records every single step you took to build your part.</li>
+            </ul>
+          </div>
+          <h3>Why Beginners Struggle (And How Pros Solve It)</h3>
+          <p>When you design your first box or bracket in CAD, it is tempting to simply draw a rectangle, type in <code>50 mm</code>, and extrude it upwards. That works fine—until you print the part and realize your electronic board is actually 52 mm wide, or your wall thickness of 2 mm is too weak. If you typed fixed numbers into 15 different sketches, changing the size later will break your model and trigger red error messages in the timeline.</p>
+          <h3>Step-by-Step Workflow in Fusion 360</h3>
+          <ol>
+            <li><strong>Open the Parameter Table first:</strong> Before drawing a single line, click on <code>Modify > Change Parameters</code> (shortcut: press <code>S</code> and type "Parameters").</li>
+            <li><strong>Create Core Variables:</strong> Click the <code>+ User Parameter</code> button and create basic building blocks: <code>wall_thickness = 2.4 mm</code>, <code>inner_length = 80 mm</code>, <code>inner_width = 50 mm</code>, and <code>clearance = 0.25 mm</code>.</li>
+            <li><strong>Use Names Instead of Numbers:</strong> Create a new sketch on the bottom plane. Draw a center rectangle. Instead of typing a number into the dimension box, type <code>inner_length + (wall_thickness * 2)</code>. Fusion 360 calculates the math automatically!</li>
+            <li><strong>Link Features Together:</strong> When you extrude the walls or hollow out the part using the <em>Shell</em> tool, type <code>wall_thickness</code> as the thickness value.</li>
+          </ol>
+          <h3>Pro Tip for 3D Printing</h3>
+          <p>Always set your <code>wall_thickness</code> as a multiple of your 3D printer's nozzle diameter (usually 0.4 mm). A wall thickness of <strong>1.6 mm (4 walls)</strong> or <strong>2.4 mm (6 walls)</strong> prints much faster and stronger because the printer doesn't have to shake back and forth trying to fill tiny gaps between perimeters.</p>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Parametrisch:</strong> Statt fester Zahlen nutzt du Platzhalter-Namen (wie in einer Excel-Tabelle). Änderst du später den Wert für „Wandstärke“ von 2 mm auf 3 mm, baut sich das gesamte 3D-Bauteil automatisch neu auf.</li>
+              <li><strong>Abhängigkeiten (Constraints):</strong> Geometrische Spielregeln in einer Skizze (z. B. „diese zwei Linien bleiben immer parallel“ oder „dieser Kreis bleibt immer exakt in der Mitte“).</li>
+              <li><strong>Timeline (Zeitleiste):</strong> Die Leiste ganz unten in Fusion 360, die jeden deiner Arbeitsschritte chronologisch speichert.</li>
+            </ul>
+          </div>
+          <h3>Warum Einsteiger oft verzweifeln (und wie Profis es lösen)</h3>
+          <p>Beim ersten eigenen Bauteil zeichnet man oft einfach drauflos, tippt <code>50 mm</code> in die Skizze ein und zieht den Körper in 3D hoch. Das klappt super – bis das Teil aus dem 3D-Drucker kommt und man merkt: Es fehlen 1,5 mm Platz oder die Wand ist zu dünn. Wer feste Zahlen in zehn verschiedene Skizzen getippt hat, erlebt beim nachträglichen Ändern oft ein Chaos aus roten Fehlermeldungen.</p>
+          <h3>Schritt-für-Schritt-Anleitung in Fusion 360</h3>
+          <ol>
+            <li><strong>Zuerst die Parametertabelle öffnen:</strong> Bevor du die erste Linie zeichnest, klicke oben auf <code>Ändern > Parameter ändern</code>.</li>
+            <li><strong>Grundwerte anlegen:</strong> Klicke auf das Plus-Symbol bei <em>Benutzerparameter</em> und lege deine Grundmaße an: <code>wand = 2.4 mm</code>, <code>innen_laenge = 80 mm</code>, <code>innen_breite = 50 mm</code> und <code>spiel = 0.25 mm</code>.</li>
+            <li><strong>Wörter statt Zahlen tippen:</strong> Erstelle eine Skizze und zeichne ein Rechteck vom Mittelpunkt aus. Tippe bei der Bemaßung nicht „84,8“ ein, sondern schreibe direkt die Formel <code>innen_laenge + (wand * 2)</code> hinein.</li>
+            <li><strong>Funktionen verknüpfen:</strong> Auch beim Hochziehen (Extrudieren) oder Aushöhlen (Schale/Shell) tippst du einfach das Wort <code>wand</code> in das Eingabefeld.</li>
+          </ol>
+          <h3>Profi-Kniff für den 3D-Druck</h3>
+          <p>Wähle deine Variable <code>wand</code> immer passend zu deiner Druckerdüse (Standard: 0,4 mm). Werte wie <strong>1,6 mm (exakt 4 Wandlinien)</strong> oder <strong>2,4 mm (exakt 6 Wandlinien)</strong> werden vom Drucker ohne unnötiges Zickzack-Füllen extrem sauber und stabil gedruckt.</p>
+        `
+      },
+      {
+        group: "CAD",
+        cat_en: "CAD & Fusion 360", cat_de: "CAD & Fusion 360",
+        title_en: "2. Clearances, Tolerances & Press-Fits",
+        title_de: "2. Spaltmaße, Toleranzen & Passungen für 3D-Druck",
+        teaser_en: "Why a 10mm pin never fits into a 10mm hole in 3D printing—and the exact numbers you need.",
+        teaser_de: "Warum ein 10-mm-Bolzen im 3D-Druck niemals in ein 10-mm-Loch passt – und welche exakten Werte du brauchst.",
+        sources: [
+          { name: "All3DP Tolerance Guide", url: "https://all3dp.com" },
+          { name: "CNC Kitchen Mechanical Fits", url: "https://www.cnckitchen.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Clearance (Spaltmaß):</strong> The intentional air gap you leave between two parts in CAD so they can move or slide together in the real world.</li>
+              <li><strong>Tolerance:</strong> The tiny physical inaccuracy of your 3D printer (because melted plastic expands slightly and forms ridges on the sides).</li>
+              <li><strong>Offset Face:</strong> A tool in CAD that pushes the surface of a 3D body slightly inward or outward to create room.</li>
+            </ul>
+          </div>
+          <h3>The Golden Rule of 3D Printing</h3>
+          <p>In the digital world of CAD, a cylinder with a <code>10.00 mm</code> diameter fits into a <code>10.00 mm</code> hole. In physical 3D printing, melted plastic is squeezed out of a round nozzle, creating tiny microscopic ridges on every layer. Additionally, inner holes always shrink slightly as the plastic cools and pulls inward. If you print both at 10.00 mm, they will jam completely.</p>
+          <h3>Step-by-Step: The Exact Cheat-Sheet Numbers</h3>
+          <ol>
+            <li><strong>Press-Fit (Hammer / Permanent Fit):</strong> Leave a gap of <strong>0.05 mm to 0.10 mm</strong> per side. You will need force to push the parts together, and they will hold tightly without glue.</li>
+            <li><strong>Sliding / Lid Fit (Smooth Box Lid):</strong> Leave a gap of <strong>0.15 mm to 0.20 mm</strong> per side. Ideal for puzzle sorting boxes, battery covers, and sliding drawers.</li>
+            <li><strong>Loose / Hinge Fit (Moving Parts & Print-in-Place):</strong> Leave a gap of <strong>0.30 mm to 0.40 mm</strong> per side so parts can rotate freely without fusing together during printing.</li>
+          </ol>
+          <h3>How to Apply This Cleanly in CAD</h3>
+          <p>Never mess up your original sketch dimensions by adding weird numbers like <code>10.17 mm</code>. Draw both the pin and the hole at a clean <code>10.00 mm</code>! Once both 3D bodies exist, select the <strong>Offset Face (Press/Pull, Shortcut: Q)</strong> tool, click the inner wall of the hole, and push it back by <code>-0.20 mm</code>. That keeps your sketches clean and lets you adjust the fit in seconds.</p>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Spaltmaß (Clearance):</strong> Der bewusste Luftspalt, den du zwischen zwei Bauteilen im CAD-Programm einplanst, damit sie nach dem Drucken ineinanderpassen.</li>
+              <li><strong>Toleranz:</strong> Die natürliche Abweichung deines Druckers, weil flüssiges Plastik leicht aufquillt und sich beim Abkühlen zusammenzieht.</li>
+              <li><strong>Fläche versetzen (Drücken/Ziehen, Taste Q):</strong> Ein Werkzeug in Fusion 360, mit dem du fertige Bauteilwände nachträglich um Zehntelmillimeter zurückschieben kannst.</li>
+            </ul>
+          </div>
+          <h3>Das Grundproblem: Digital vs. geschmolzenes Plastik</h3>
+          <p>Im Computer passt ein Zylinder mit <code>10,00 mm</code> Durchmesser perfekt in ein <code>10,00 mm</code> großes Loch. Beim 3D-Druck wird jedoch flüssiger Kunststoff Schicht für Schicht aufgetragen. Dadurch entstehen an den Außenwänden minimale Rillen, und runde Innenlöcher ziehen sich beim Abkühlen immer leicht nach innen zusammen (Seil-Effekt). Druckst du beides mit 10,00 mm, bekommst du die Teile nicht einmal mit dem Hammer zusammen.</p>
+          <h3>Schritt-für-Schritt: Die wichtigsten Praxis-Werte (für Bambu Lab & moderne Drucker)</h3>
+          <ol>
+            <li><strong>Stramme Presspassung (Hält ohne Kleber):</strong> Plane <strong>0,05 mm bis 0,10 mm</strong> Luft pro Seite ein. Perfekt für Lager, Bolzen oder Teile, die fest sitzen sollen.</li>
+            <li><strong>Schiebepassung / Deckel (Der goldene Standard):</strong> Plane <strong>0,15 mm bis 0,20 mm</strong> Luft pro Seite ein. Ideal für Sortierboxen, Steckdeckel und Einschübe.</li>
+            <li><strong>Leichtgängige Scharniere (Bewegliche Gelenke):</strong> Plane <strong>0,30 mm bis 0,40 mm</strong> Luft ein, damit Gelenke frei drehen und beim Druck nicht verschmelzen.</li>
+          </ol>
+          <h3>So setzt du es im CAD wie ein Profi um</h3>
+          <p>Verunstalte niemals deine Skizzen mit krummen Zahlen wie <code>10,18 mm</code>! Zeichne Bolzen und Loch in der Skizze glatt mit <code>10,00 mm</code>. Wenn die 3D-Körper fertig sind, drücke die Taste <strong>Q (Drücken/Ziehen)</strong>, klicke die Innenwand des Lochs an und gib <code>-0.20 mm</code> ein. So bleibt deine Konstruktion sauber und übersichtlich.</p>
+        `
+      },
+      {
+        group: "CAD",
+        cat_en: "CAD & Fusion 360", cat_de: "CAD & Fusion 360",
+        title_en: "3. Designing 3D-Printable Threads & Screws",
+        title_de: "3. 3D-druckbare Gewinde & Verschraubungen",
+        teaser_en: "How to model smooth, durable screw threads for containers, mounts, and nuts without support material.",
+        teaser_de: "Wie du butterweiche, extrem haltbare Schraubgewinde für Dosen, Halterungen und Muttern ohne Stützstruktur konstruierst.",
+        sources: [
+          { name: "Autodesk Thread & Coil Guide", url: "https://help.autodesk.com/view/fusion360/ENU/" },
+          { name: "Printables Design Best Practices", url: "https://blog.prusa3d.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Thread Pitch (Steigung):</strong> The vertical distance between two thread peaks. Coarse pitch = big, rugged teeth; Fine pitch = tiny teeth.</li>
+              <li><strong>Flank Angle:</strong> The steepness of the thread teeth. Standard metal threads use 60° (which prints well vertically without supports!).</li>
+              <li><strong>Modeled Checkbox:</strong> In Fusion 360, threads are only painted on as an image unless you check the box "Modeled" to create real 3D geometry.</li>
+            </ul>
+          </div>
+          <h3>Why Standard Metal Threads Often Fail in Plastic</h3>
+          <p>Fine metal threads (like M3 or M4) have tiny teeth that are smaller than the resolution of a 0.4 mm 3D printer nozzle. For small screws (M2 to M5), use brass heat-set inserts or cut threads directly into plastic. For larger diameters (from M12 upwards, or screw-top containers), 3D-printed threads work fantastically if you follow three rules.</p>
+          <h3>Step-by-Step Workflow in Fusion 360</h3>
+          <ol>
+            <li><strong>Use the Thread Tool (Create > Thread):</strong> Click the cylinder wall. <strong>Crucial:</strong> Check the box <code>Modeled</code> at the top! Otherwise, the slicer will only see a smooth cylinder.</li>
+            <li><strong>Choose Coarse Pitch:</strong> For diameters between 12 mm and 30 mm, always select the coarsest pitch available (at least <code>2.0 mm</code> to <code>3.0 mm</code> pitch). For Twist-Containers, use the <em>Coil</em> tool with a trapezoidal profile.</li>
+            <li><strong>Flatten Sharp Peaks:</strong> Select the outer face of the thread teeth and use <code>Q (Press/Pull)</code> to push the sharp tips back by <code>-0.15 mm</code>, plus push the flanks back by <code>-0.15 mm</code>.</li>
+            <li><strong>Add a Lead-In Chamfer:</strong> Apply a 45° chamfer to the start of the thread so the nut catches smoothly without cross-threading.</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Gewindesteigung (Pitch):</strong> Der Abstand von einer Gewindespitze zur nächsten. Große Steigung = grobe, dicke Zähne (ideal für 3D-Druck!).</li>
+              <li><strong>Flankenwinkel:</strong> Die Schräge der Gewindezähne. Da normale Gewinde einen 60°-Winkel haben, kann dein Drucker sie stehend völlig ohne Stützstruktur drucken!</li>
+              <li><strong>Häkchen „Modelliert“:</strong> Fusion 360 zeigt Gewinde standardmäßig nur als aufgeklebtes Bild an. Erst mit dem Haken bei „Modelliert“ wird echtes 3D-Plastik daraus.</li>
+            </ul>
+          </div>
+          <h3>Wann druckt man Gewinde – und wann nicht?</h3>
+          <p>Winzige Metallgewinde wie M3 haben viel zu feine Zähne für eine 0,4-mm-Düse (hier nutzt man Einschmelzmuttern aus Messing). Ab <strong>M10 aufwärts</strong> oder für Schraubdosen, Pflanztopf-Adapter und Klemmschrauben lassen sich Gewinde jedoch perfekt drucken, wenn man sie richtig vorbereitet.</p>
+          <h3>Schritt-für-Schritt-Workflow in Fusion 360</h3>
+          <ol>
+            <li><strong>Gewinde-Werkzeug öffnen (Erstellen > Gewinde):</strong> Klicke auf deinen Zylinder. <strong>Wichtigster Schritt für Einsteiger:</strong> Setze ganz oben das Häkchen bei <code>Modelliert</code>! Ohne diesen Haken druckt dein 3D-Drucker später nur einen glatten Stab.</li>
+            <li><strong>Grobe Steigung wählen:</strong> Wähle im Dropdown-Menü niemals Feingewinde, sondern immer die gröbste verfügbare Steigung (ab <code>1,75 mm</code> bis <code>3,0 mm</code>).</li>
+            <li><strong>Spitzen & Flanken entschärfen (Taste Q):</strong> Klicke die schrägen Flanken des Gewindes an und versetze sie mit <code>Q</code> um <code>-0.15 mm</code> bis <code>-0.20 mm</code> nach innen. Flache auch die äußerste scharfe Spitze leicht ab, damit dort keine Plastik-Perlen entstehen.</li>
+            <li><strong>Einführhilfe (Fase) anbringen:</strong> Setze an den Anfang von Schraube und Mutter eine 45°-Fase, damit sich das Gewinde sofort gerade einfädelt.</li>
+          </ol>
+        `
+      },
+      {
+        group: "CAD",
+        cat_en: "CAD & Fusion 360", cat_de: "CAD & Fusion 360",
+        title_en: "4. Chamfers vs. Fillets on the Build Plate",
+        title_de: "4. Fasen vs. Abrundungen auf dem Druckbett",
+        teaser_en: "Why rounded bottom edges look ugly on 3D prints—and the 45-degree trick for injection-molded quality.",
+        teaser_de: "Warum abgerundete Bodenkanten beim 3D-Druck hässlich ausfransen – und der 45°-Trick für Spritzguss-Optik.",
+        sources: [
+          { name: "Slant 3D Design Rules", url: "https://all3dp.com" },
+          { name: "Prusa Slicer Overhang Guide", url: "https://help.prusa3d.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Fillet (Abrundung):</strong> A smooth, rounded corner or edge.</li>
+              <li><strong>Chamfer (Fase):</strong> A straight, angled cut across an edge (usually at 45 degrees).</li>
+              <li><strong>Overhang (Überhang):</strong> When a 3D printer tries to print a layer in mid-air because there is nothing directly underneath it.</li>
+              <li><strong>Elephant's Foot (Elefantenfuß):</strong> When the very first layer of a print is squished too wide, creating a sharp, protruding lip around the bottom.</li>
+            </ul>
+          </div>
+          <h3>The Bottom-Edge Trap</h3>
+          <p>In CAD software, a rounded <strong>Fillet</strong> on the bottom edge of a box looks super sleek on your monitor. However, when you slice and print it, the bottom looks rough, stringy, and scarred! Why? Because a circle starts at a 0-degree flat angle on the print bed. The first 3 to 4 layers have an extreme overhang of 70° to 85°, so the printer is extruding molten plastic into thin air.</p>
+          <h3>Step-by-Step Solution: The Chamfer-Then-Fillet Trick</h3>
+          <ol>
+            <li><strong>Rule 1 (Bottom Edges = Chamfer):</strong> On any edge touching the print bed, use a <strong>45° Chamfer</strong> instead of a Fillet. Every 3D printer can print a 45° angle cleanly without any support material! Even a tiny <code>0.6 mm</code> chamfer completely eliminates Elephant's Foot.</li>
+            <li><strong>Rule 2 (Want a Round Look Anyway?):</strong> First apply a <code>2.0 mm</code> 45° Chamfer to the bottom edge. Then select the <em>upper</em> line of that chamfer and apply a <strong>Fillet</strong> to it! Now your part starts at a clean 45° angle on the bed and smoothly transitions into a round curve.</li>
+            <li><strong>Rule 3 (Vertical Corners = Fillet):</strong> On vertical side walls, always use Fillets! Rounded vertical corners allow the print head to glide smoothly around turns without having to brake to zero speed.</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Abrundung (Fillet):</strong> Eine weiche, runde Kante.</li>
+              <li><strong>Fase (Chamfer):</strong> Eine gerade abgeschrägte Kante (meist im 45-Grad-Winkel).</li>
+              <li><strong>Überhang (Overhang):</strong> Wenn der Drucker versucht, eine Plastikbahn in die freie Luft zu drucken, weil darunter keine stützende Schicht liegt.</li>
+              <li><strong>Elefantenfuß:</strong> Wenn die allererste Schicht auf dem Druckbett leicht breitgedrückt wird und unten eine scharfe, überstehende Kante bildet.</li>
+            </ul>
+          </div>
+          <h3>Die typische Bodenkanten-Falle</h3>
+          <p>Am Bildschirm sieht eine große <strong>Abrundung (Fillet)</strong> an der Unterkante einer Box wunderschön aus. Kommt das Teil jedoch aus dem Drucker, ist die Unterkante ausgefranst, rau und unsauber. Der Grund ist reine Geometrie: Eine Rundung beginnt ganz unten am Druckbett fast waagerecht (über 80° Überhang). Der Drucker druckt die ersten Schichten also fast in die freie Luft!</p>
+          <h3>Schritt-für-Schritt-Lösung: Der 45°-Kombi-Trick</h3>
+          <ol>
+            <li><strong>Grundregel für das Druckbett (Immer Fasen!):</strong> Nutze an der Unterkante, die auf der Druckplatte aufliegt, immer eine <strong>45°-Fase (Chamfer)</strong>. Einen 45°-Winkel schafft jeder Drucker makellos ohne Stützen. Schon eine Mini-Fase von <code>0,6 mm</code> verhindert zudem jeden Elefantenfuß!</li>
+            <li><strong>Du willst unten trotzdem eine runde Optik?</strong> Erstelle unten zuerst eine 45°-Fase (z. B. <code>2,0 mm</code>). Wähle direkt danach das Werkzeug <strong>Abrundung (Fillet)</strong> und klicke die <em>obere</em> Kante dieser Fase an! So startet der Druck sauber mit 45° und geht butterweich in eine Rundung über.</li>
+            <li><strong>Senkrechte Wände (Immer Abrunden!):</strong> An den senkrechten Seitenkanten deines Bauteils solltest du dagegen immer Abrundungen nutzen – so kann der Druckkopf mit hoher Geschwindigkeit sanft um die Kurve fahren, statt ruckartig abzubremsen.</li>
+          </ol>
+        `
+      },
+      {
+        group: "CAD",
+        cat_en: "CAD & Fusion 360", cat_de: "CAD & Fusion 360",
+        title_en: "5. Snap-Fits, Living Hinges & Clips",
+        title_de: "5. Schnappverschlüsse (Snap-Fits) & Clips konstruieren",
+        teaser_en: "How to engineer flexible clips and interlocking hooks that snap together hundreds of times without breaking.",
+        teaser_de: "Wie du federnde Clips und Rastnasen konstruierst, die hunderte Male sauber einrasten, ohne jemals abzubrechen.",
+        sources: [
+          { name: "BASF Snap-Fit Design Manual", url: "https://www.engineering.com" },
+          { name: "All3DP Snap-Fit Engineering", url: "https://all3dp.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Cantilever Hook:</strong> A flexible plastic arm with a small catch hook at the end that bends aside when pushed and snaps into a slot.</li>
+              <li><strong>Layer Delamination:</strong> When a 3D-printed part splits apart along its horizontal layer lines because force was applied in the wrong direction.</li>
+              <li><strong>Stress Concentration:</strong> A sharp 90° inner corner where bending force focuses until the plastic snaps.</li>
+            </ul>
+          </div>
+          <h3>Why 90% of Printed Clips Break on the First Try</h3>
+          <p>When beginners design a snap-fit clip (for example on a WAGO mount or electronics case), the hook often snaps right off the first time it is pressed. There are two culprits: First, the hook was printed standing upright (so the bending force pulls the horizontal layers apart). Second, the base of the arm has a sharp 90° corner.</p>
+          <h3>Step-by-Step Design Rules for Unbreakable Clips</h3>
+          <ol>
+            <li><strong>Print Orientation is King:</strong> Always orient your part so the flexible arm of the clip lies flat (or on its side) on the print bed. That way, the continuous plastic strands run along the length of the arm like a fiberglass bow!</li>
+            <li><strong>Round the Root (Fillet the Base):</strong> Where the flexible arm meets the main body, add a generous <strong>Fillet</strong> (at least <code>1.5 mm</code> to <code>3.0 mm</code> radius). This distributes the bending stress across a larger area instead of snapping at a sharp corner.</li>
+            <li><strong>Taper the Arm:</strong> Make the arm slightly thicker at the base (e.g., <code>2.4 mm</code>) and thinner toward the tip (e.g., <code>1.4 mm</code>). A tapered beam bends evenly along its entire length!</li>
+            <li><strong>Set the Hook Angle:</strong> Give the front of the catch nose a gentle <code>30° to 35°</code> ramp so it slides in smoothly, and a <code>45°</code> back angle if you want to be able to open it again without tools.</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Rastnase (Cantilever Snap-Fit):</strong> Ein kleiner, federnder Plastikarm mit einem Haken am Ende, der beim Zusammendrücken kurz zur Seite weicht und hörbar einrastet.</li>
+              <li><strong>Schichthaftung (Layer-Riss):</strong> Ein 3D-Druck ist entlang seiner durchgehenden Plastikbahnen extrem stark, bricht aber leicht, wenn man die aufeinandergestapelten Schichten auseinanderzieht (wie bei einem Stapel Lego-Steine).</li>
+              <li><strong>Kerbwirkung:</strong> Eine scharfe 90°-Innenecke, an der sich beim Biegen die gesamte Kraft sammelt, bis das Bauteil exakt dort durchbricht.</li>
+            </ul>
+          </div>
+          <h3>Warum die meisten selbstgebauten Clips beim ersten Mal abbrechen</h3>
+          <p>Fast jeder Maker kennt das Geräusch: Man drückt stolz seinen ersten selbstkonstruierten Deckel oder Klemmenhalter zusammen – es macht kurz *Knack* und die Rastnase liegt abgebrochen auf dem Tisch. Die Ursache liegt fast immer an zwei Dingen: falscher Druckausrichtung und scharfen Innenecken.</p>
+          <h3>Schritt-für-Schritt zu unzerstörbaren Schnappverschlüssen</h3>
+          <ol>
+            <li><strong>Die Druckrichtung entscheidet:</strong> Konstruiere und drehe dein Bauteil so, dass der federnde Arm möglichst liegend gedruckt wird. Dann laufen die Endlos-Plastikbahnen wie ein Pfeilbogen durch den gesamten Arm – so bricht er selbst nach 500 Klicks nicht!</li>
+            <li><strong>Die Wurzel abrunden (Anti-Kerbwirkung):</strong> Unten am Übergang, wo der Federarm aus dem Gehäuse wächst, darf <strong>niemals</strong> eine scharfe 90°-Ecke sein! Setze dort auf beiden Seiten eine Abrundung (Fillet) von mindestens <code>1,5 mm bis 2,5 mm</code>.</li>
+            <li><strong>Den Arm leicht verjüngen:</strong> Mache den Federarm unten an der Wurzel etwas dicker (z. B. <code>2,2 mm</code>) und lasse ihn zur Spitze hin leicht dünner zulaufen (z. B. <code>1,4 mm</code>). Dadurch verteilt sich die Biegung gleichmäßig auf den ganzen Arm.</li>
+            <li><strong>Die Winkel der Nase:</strong> Gib der Vorderseite der Rastnase eine sanfte <code>30°-Schräge</code> (für leichtes Eindrücken) und der Rückseite <code>45°</code> (wenn sich der Deckel wieder öffnen lassen soll) oder <code>80°</code> (für dauerhaften Halt).</li>
+          </ol>
+        `
+      },
+      {
+        group: "CAD",
+        cat_en: "CAD & Fusion 360", cat_de: "CAD & Fusion 360",
+        title_en: "6. Exporting High-Res STEP & 3MF vs. STL",
+        title_de: "6. Perfekter Export: Warum STEP & 3MF besser sind als STL",
+        teaser_en: "Why old STL files turn round circles into blocky polygons—and how to export glass-smooth curves.",
+        teaser_de: "Warum alte STL-Dateien runde Kreise oft eckig machen – und wie du mit STEP und 3MF spiegelglatte Kurven druckst.",
+        sources: [
+          { name: "Bambu Studio STEP & 3MF Guide", url: "https://wiki.bambulab.com" },
+          { name: "Prusa 3MF File Format Whitepaper", url: "https://blog.prusa3d.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>STL (Stereolithography):</strong> A 35-year-old file format that approximates 3D shapes using thousands of flat triangles. It forgets units (mm vs. inches) and has no true curves.</li>
+              <li><strong>3MF (3D Manufacturing Format):</strong> The modern successor to STL. It is much smaller in file size, saves colors, print settings, multiple plates, and exact units.</li>
+              <li><strong>STEP File:</strong> The universal engineering CAD format. It saves mathematically perfect circles and curves instead of flat triangles!</li>
+            </ul>
+          </div>
+          <h3>Have You Ever Seen Tiny Flat Faces on a Round Cylinder?</h3>
+          <p>When you print a round planter or vase exported as a standard STL file, you can often see dozens of tiny flat vertical facets around the outside instead of a smooth circle. That happens because STL converts every curve into a mesh of flat triangles.</p>
+          <h3>Step-by-Step: How to Export Flawless Files</h3>
+          <ol>
+            <li><strong>Option A – Export as STEP (Best for Round & Mechanical Parts):</strong> In Fusion 360, go to <code>File > Export</code> and choose <strong>STEP (*.step / *.stp)</strong>. Modern slicers like Bambu Studio, OrcaSlicer, and PrusaSlicer load STEP files directly! Because STEP contains true mathematical circles, the slicer generates native <code>G2/G3</code> arc movements, resulting in whisper-quiet printing and glass-smooth outer walls.</li>
+            <li><strong>Option B – Export as 3MF (Best for Multi-Part & Slicer Projects):</strong> Right-click your component in Fusion 360, select <code>Save As Mesh</code>, choose <strong>3MF</strong>, and set Refinement to <code>High</code>.</li>
+            <li><strong>Bonus for Creator Platforms:</strong> Uploading both the <code>3MF</code> print profile and the raw <code>STEP</code> file to MakerWorld or Printables earns higher community ratings because other makers can easily remix your design!</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>STL-Datei:</strong> Ein über 35 Jahre altes Format, das runde Formen in tausende flache Dreiecke zerhackt. Es kennt keine echten Rundungen und vergisst oft sogar, ob das Modell in Millimetern oder Zoll gezeichnet wurde.</li>
+              <li><strong>3MF-Datei:</strong> Der moderne Nachfolger von STL. Deutlich kleinere Dateigröße, speichert Maßstäbe, Farben, Bauteilnamen und komplette Druckeinstellungen.</li>
+              <li><strong>STEP-Datei:</strong> Das echte Ingenieurs-Format. Hier bleibt ein Kreis ein mathematisch perfekter Kreis ohne Dreiecks-Kanten!</li>
+            </ul>
+          </div>
+          <h3>Warum runde Dosen im 3D-Druck oft „vieleckig“ aussehen</h3>
+          <p>Kennst du das? Du konstruierst im CAD einen kreisrunden Pflanztopf oder Griff, aber auf dem gedruckten Teil siehst du im Licht lauter kleine, flache Facetten wie bei einer Diskokugel. Das liegt nicht an deinem Drucker, sondern am alten STL-Format, das aus jedem Kreis ein Vieleck aus flachen Dreiecken macht.</p>
+          <h3>Schritt-für-Schritt zum perfekten Export aus Fusion 360</h3>
+          <ol>
+            <li><strong>Der Königsweg – Als STEP exportieren:</strong> Klicke in Fusion 360 auf <code>Datei > Exportieren</code> und wähle als Typ <strong>STEP-Dateien (*.stp / *.step)</strong>. Moderne Slicer (wie Bambu Studio, OrcaSlicer oder PrusaSlicer) können STEP-Dateien direkt öffnen! Der riesige Vorteil: Dein Drucker fährt echte, butterweiche Kreisbögen ab, druckt leiser und erzeugt spiegelglatte Zylinderwände.</li>
+            <li><strong>Der Projektweg – Als 3MF speichern:</strong> Rechtsklicke im Browserbaum von Fusion 360 auf deinen Körper, wähle <code>Als Netz speichern</code>, stelle das Format auf <strong>3MF</strong> und die Verfeinerung auf <code>Hoch</code>.</li>
+            <li><strong>Creator-Tipp für MakerWorld & Printables:</strong> Wenn du neben der Druckdatei auch die STEP-Datei hochlädst, lieben dich andere Maker, weil sie Adapter oder Halterungen millimetergenau anpassen können.</li>
+          </ol>
+        `
+      },
+      {
+        group: "3D",
+        cat_en: "3D Printing & Slicing", cat_de: "3D-Druck & Slicing",
+        title_en: "7. First Layer Physics & Plate Hygiene",
+        title_de: "7. Perfekte Erste Schicht & Druckbett-Physik",
+        teaser_en: "How to guarantee 100% bed adhesion without glue sticks—and why isopropyl alcohol is sometimes a trap.",
+        teaser_de: "Wie jeder Druck zu 100 % ohne Klebestift haftet – und warum Isopropanol allein auf PEI-Platten oft ein Trugschluss ist.",
+        sources: [
+          { name: "Bambu Lab PEI Plate Care", url: "https://wiki.bambulab.com" },
+          { name: "CNC Kitchen Adhesion Testing", url: "https://www.cnckitchen.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>PEI Sheet:</strong> The golden or black spring-steel plate on your printer. Its special coating grabs hot plastic while warm and releases it automatically once cool!</li>
+              <li><strong>Z-Offset (Squish):</strong> The exact distance between the nozzle tip and the print bed on layer #1.</li>
+              <li><strong>Warping:</strong> When the corners of a print cool down too fast, shrink, and curl upward off the build plate.</li>
+            </ul>
+          </div>
+          <h3>Why Prints Suddenly Stop Sticking (The IPA Myth)</h3>
+          <p>90% of all failed 3D prints ("spaghetti monsters") happen because the first layer loses grip on the build plate. Many beginners wipe their textured PEI plate with Isopropyl Alcohol (IPA) after every print—and wonder why parts still pop off! Here is the catch: IPA dissolves skin oils and sugar residues from PLA, but if you just wipe with a cloth, you merely spread a microscopic film of grease evenly across the textured valleys of the plate.</p>
+          <h3>Step-by-Step Protocol for Unbeatable Adhesion</h3>
+          <ol>
+            <li><strong>The Dish Soap Reset:</strong> Take your PEI plate to the kitchen sink. Use warm water, a soft sponge, and basic, unscented liquid dish soap (dish soap surfactants bind fat molecules and flush them away with water). Dry with a clean paper towel and <strong>never touch the print area with bare fingers</strong>!</li>
+            <li><strong>Heat Soak Before Leveling:</strong> Metal expands when heated. Let your bed sit at <code>60°C</code> (PLA) or <code>70°C</code> (PETG) for 3–5 minutes before the auto-leveling probe taps the bed.</li>
+            <li><strong>Kill the Cooling Fan on Layer 1–3:</strong> In your slicer's filament settings, ensure the part cooling fan is set to <code>0%</code> for the first 2 to 3 layers so the plastic can bond deeply into the PEI texture without thermal shock.</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>PEI-Druckplatte:</strong> Die magnetische Federstahlplatte auf deinem Drucker. Ihre Spezialbeschichtung hält heißes Plastik extrem fest und lässt es von ganz allein los, sobald die Platte abkühlt!</li>
+              <li><strong>Squish (Anpressdruck):</strong> Wie stark die Düse die allererste Plastikbahn in die Struktur der Druckplatte presst.</li>
+              <li><strong>Warping (Verzug):</strong> Wenn sich die Ecken eines großen Bauteils beim Abkühlen nach oben biegen und vom Druckbett ablösen.</li>
+            </ul>
+          </div>
+          <h3>Warum Drucke plötzlich nicht mehr haften (Der Isopropanol-Irrtum)</h3>
+          <p>Fast jeder Fehldruck („Spaghetti-Monster“) entsteht, weil sich die erste Schicht vom Bett löst. Viele Einsteiger wischen ihre strukturierte PEI-Platte vor jedem Druck brav mit Isopropanol (IPA) ab – und wundern sich, warum trotzdem nichts hält. Der physikalische Grund: Alkohol löst Hautfett zwar kurz an, aber mit dem Tuch verreibst du das Fett nur hauchdünn in den feinen Tälern der strukturierten Platte!</p>
+          <h3>Schritt-für-Schritt zu 100 % Haftung ohne Klebestift</h3>
+          <ol>
+            <li><strong>Der Spüli-Reset:</strong> Nimm die PEI-Platte mit ans Waschbecken. Wasche sie mit warmem Wasser, einem weichen Schwamm und einem Tropfen ganz normalem Geschirrspülmittel (ohne rückfettende Handcreme-Zusätze!) ab. Die Tenside im Spüli schließen das Fett ein und das Wasser spült es restlos weg. Danach mit Küchenpapier trocknen und <strong>nur noch am Rand anfassen</strong>!</li>
+            <li><strong>Temperatur & Lüfter in Schicht 1:</strong> Stelle im Slicer sicher, dass der Bauteillüfter für die <strong>ersten 2 bis 3 Schichten komplett ausgeschaltet (0 %)</strong> bleibt. Für PLA sind <code>60 °C</code> Betttemperatur auf strukturiertem PEI optimal, für PETG <code>70 °C</code>.</li>
+            <li><strong>Brim bei hohen, schmalen Teilen:</strong> Hat ein Bauteil wenig Auflagefläche, aktiviere im Slicer unter <em>Andere > Brim-Typ</em> einen <code>5 mm Außen-Brim</code> (Hutkrempe), der nach dem Druck einfach abgezogen wird.</li>
+          </ol>
+        `
+      },
+      {
+        group: "3D",
+        cat_en: "3D Printing & Slicing", cat_de: "3D-Druck & Slicing",
+        title_en: "8. PLA vs. PETG vs. TPU – Material Guide",
+        title_de: "8. PLA vs. PETG vs. TPU – Wann welches Filament?",
+        teaser_en: "Why PLA melts in your car in summer, why PETG loves moisture, and how to print rubber-like TPU.",
+        teaser_de: "Warum PLA im Sommer im Auto schmilzt, wann du PETG brauchst und wie du gummiartiges TPU fehlerfrei druckst.",
+        sources: [
+          { name: "Prusa Material Table", url: "https://help.prusa3d.com" },
+          { name: "All3DP Filament Comparison", url: "https://all3dp.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Glass Transition Temp (TG):</strong> The temperature at which solid plastic suddenly turns soft like chewing gum (even long before it actually melts!).</li>
+              <li><strong>Hygroscopic:</strong> Plastics that act like a sponge and absorb invisible humidity from the room air, causing popping sounds and stringing during printing.</li>
+              <li><strong>Shore Hardness (e.g., 95A):</strong> A scale that measures how soft or stretchy a rubbery TPU filament is.</li>
+            </ul>
+          </div>
+          <h3>Choosing the Right Plastic for the Job</h3>
+          <p>Beginners often print everything in PLA because it is easy and looks great. Surprisingly, PLA is actually stiffer and harder than PETG—but it has two fatal flaws: It shatters abruptly under sudden impact, and it softens at just <strong>55°C</strong>! Leave a PLA sunglass holder in your car in summer or use it in direct sun on a south-facing balcony, and it will droop under its own weight.</p>
+          <h3>Step-by-Step Material Selection & Slicing</h3>
+          <ol>
+            <li><strong>PLA (Indoor, Art, Organizers & Prototyping):</strong> Print at <code>215–220°C</code> nozzle / <code>60°C</code> bed with <code>100%</code> cooling fan. Best for vases, puzzle boxes, indoor mounts, and crisp details.</li>
+            <li><strong>PETG (Balcony, Outdoors, Mechanical Brackets & Clips):</strong> Withstands up to <strong>75–80°C</strong>, is UV-resistant, waterproof, and bends slightly before breaking. Print slower than PLA at <code>235–245°C</code> nozzle / <code>70°C</code> bed, and lower your cooling fan to <code>30–40%</code> for maximum layer bonding!</li>
+            <li><strong>TPU 95A (FPV Drone Bumpers, Seals, Dampeners & Grips):</strong> Virtually indestructible, flexible, and impact-absorbing. Must be dried before printing! Print slowly (<code>40–60 mm/s</code>) with minimal retraction (<code>0.4–0.8 mm</code>) and feed it directly without an AMS system.</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Erweichungstemperatur (Glasübergang):</strong> Die Temperatur, ab der ein festes Bauteil plötzlich weich wie Kaugummi wird – lange bevor es flüssig schmilzt!</li>
+              <li><strong>Hygroskopisch:</strong> Kunststoffe (wie PETG und TPU), die wie ein unsichtbarer Schwamm Luftfeuchtigkeit aus deinem Zimmer aufsaugen. Beim Drucken kocht dieses Wasser in der Düse auf und erzeugt Fäden (Stringing).</li>
+              <li><strong>Shore-Härte (z. B. 95A):</strong> Gibt an, wie weich ein Gummi-Filament ist. 95A ist etwa so fest wie eine Einkaufswagen-Rolle und perfekt für Einsteiger.</li>
+            </ul>
+          </div>
+          <h3>Warum PLA nicht für alles reicht</h3>
+          <p>PLA lässt sich kinderleicht drucken und ist extrem steif. Aber PLA hat zwei natürliche Feinde: <strong>Wärme ab 55 °C</strong> und <strong>Dauerspannung (Kriechen)</strong>. Legst du eine Handyhalterung aus PLA im Sommer ins Auto oder stellst einen dünnen PLA-Topf in die pralle Südsonne, verformt sich das Bauteil von selbst.</p>
+          <h3>Schritt-für-Schritt: Dein Material-Fahrplan</h3>
+          <ol>
+            <li><strong>PLA (Deko, Sortierboxen, Figuren & Indoor-Tools):</strong> Drucktemperatur <code>215–220 °C</code>, Bett <code>60 °C</code>, Bauteillüfter auf <code>100 %</code>. Unschlagbar für feine Details, Überhänge und schöne Oberflächen im Haus.</li>
+            <li><strong>PETG (Balkon-Pflanztöpfe, Elektro-Clips, Halterungen & Outdoor):</strong> Hält bis ca. <strong>75–80 °C</strong> stand, ist wetterfest, UV-beständig und zäh-elastisch (perfekt für Schnappverschlüsse!). Drucke es bei <code>235–245 °C</code>, Bett <code>70 °C</code> und reduziere den Bauteillüfter auf <code>30–40 %</code>, damit sich die Schichten unzertrennlich verschweißen.</li>
+            <li><strong>TPU 95A (FPV-Kamerahalter, Schutz-Bumper, Füße & Dichtungen):</strong> Gummiartig, schlagfest und unzerstörbar. Wichtig: TPU vor dem Druck trocknen, nicht durch ein normales AMS schicken und im Slicer die maximale Volumengeschwindigkeit auf ca. <code>3,5 mm³/s</code> begrenzen!</li>
+          </ol>
+        `
+      },
+      {
+        group: "3D",
+        cat_en: "3D Printing & Slicing", cat_de: "3D-Druck & Slicing",
+        title_en: "9. Walls vs. Infill: How to Print Unbreakable Parts",
+        title_de: "9. Wandlinien vs. Infill: Maximale Stabilität beim Druck",
+        teaser_en: "Why 80% infill is a waste of time and plastic—and why wall count + Gyroid is the true secret to strength.",
+        teaser_de: "Warum 80 % Infill reine Zeit- und Plastikverschwendung ist – und warum mehr Wandlinien jedes Teil doppelt so stark machen.",
+        sources: [
+          { name: "CNC Kitchen Infill vs. Walls Study", url: "https://www.cnckitchen.com" },
+          { name: "Bambu Studio Strength Wiki", url: "https://wiki.bambulab.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Wall Loops / Perimeters:</strong> The solid outer shell lines that form the contour of your 3D print.</li>
+              <li><strong>Infill (Füllung):</strong> The internal grid or honeycomb pattern inside a 3D print (so you don't have to print solid blocks of plastic).</li>
+              <li><strong>Gyroid Infill:</strong> A wave-like 3D infill pattern that is equally strong in all directions and never causes the nozzle to scratch across existing lines!</li>
+            </ul>
+          </div>
+          <h3>The Biggest Beginner Misconception About Strength</h3>
+          <p>When a beginner wants to print a heavy-duty bracket or plant pot, their first instinct is to crank the <strong>Infill slider up from 15% to 75%</strong>. The result? The print takes three times as long, uses twice as much filament, and is barely any stronger against bending! Mechanical physics (like an I-beam or a bicycle frame tube) proves that stress is carried almost entirely by the outer skin of an object, not its hollow center.</p>
+          <h3>Step-by-Step Slicer Recipe for Heavy-Duty Parts</h3>
+          <ol>
+            <li><strong>Increase Wall Loops First:</strong> Instead of raising infill, increase <code>Wall Loops</code> from the default 2 up to <strong>4, 5, or 6 walls</strong> (along with 5 top and bottom shell layers). A part with 5 walls and 15% infill is vastly stronger than a part with 2 walls and 60% infill!</li>
+            <li><strong>Switch away from "Grid" Infill:</strong> Default "Grid" infill forces the nozzle to cross over already-printed lines at the exact same height, causing loud rattling noises and knocked-over prints. Switch your slicer permanently to <strong>Gyroid</strong> or <strong>Cross Hatch</strong> at <code>15% to 20%</code>!</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Wandlinien (Wall Loops / Perimeters):</strong> Die massiven Außenbahnen, die die Hülle deines Bauteils bilden.</li>
+              <li><strong>Infill (Fülldichte):</strong> Das innere Stützgitter im Bauteil (standardmäßig meist 15 %), damit das Teil innen nicht komplett massiv gedruckt werden muss.</li>
+              <li><strong>Gyroid-Muster:</strong> Ein wellenförmiges 3D-Infill-Muster, bei dem sich die Linien in derselben Schicht niemals kreuzen – die Düse rattert also nie über bestehendes Plastik!</li>
+            </ul>
+          </div>
+          <h3>Der größte Anfänger-Irrtum: „Viel Infill hilft viel“</h3>
+          <p>Wenn ein Bauteil besonders stabil werden soll, drehen fast alle Einsteiger im Slicer die <strong>Fülldichte (Infill) von 15 % auf 60 % oder 80 %</strong> hoch. Das Ergebnis: Der Druck dauert dreimal so lange, frisst Unmengen Filament – und bricht bei Biegung trotzdem fast genauso schnell! Wie bei einem stabilen Stahlrohr im Fahrradrahmen liegt die gesamte Biege- und Zugbelastung immer in der <strong>äußeren Hülle</strong>, nicht im inneren Kern.</p>
+          <h3>Schritt-für-Schritt-Einstellungen für unverwüstliche Bauteile</h3>
+          <ol>
+            <li><strong>Wandlinien hochsetzen (Der wichtigste Hebel!):</strong> Stelle im Slicer unter <em>Stärke > Wandlinien</em> den Wert von 2 auf <strong>4 bis 6 Wandlinien</strong> hoch (und erhöhe auch die oberen/unteren Schichten auf 5). Ein Bauteil mit 5 Wandlinien und nur 15 % Infill hält fast doppelt so viel Last aus wie eines mit 2 Wänden und 50 % Infill!</li>
+            <li><strong>Vergiss das Standard-„Gitternetz“ (Grid):</strong> Beim klassischen Gitternetz-Infill fährt die heiße Düse bei jeder Kreuzung ungebremst durch eine bereits gedruckte Linie. Das rattert laut und reißt hohe Bauteile oft vom Druckbett. Stelle das Füllmuster dauerhaft auf <strong>Gyroid</strong> oder <strong>Cross Hatch</strong> bei <code>15 % bis 20 %</code> um!</li>
+          </ol>
+        `
+      },
+      {
+        group: "3D",
+        cat_en: "3D Printing & Slicing", cat_de: "3D-Druck & Slicing",
+        title_en: "10. Support Structures & Bridge Mastery",
+        title_de: "10. Stützstrukturen (Supports) & Brücken meistern",
+        teaser_en: "When you actually need supports, how Tree Supports save filament, and how to make them pop off cleanly.",
+        teaser_de: "Wann du wirklich Stützen brauchst, wie Baumstützen (Tree Supports) dein Bauteil retten und sich rückstandslos lösen.",
+        sources: [
+          { name: "Bambu Studio Support Guide", url: "https://wiki.bambulab.com" },
+          { name: "PrusaSlicer Organic Supports", url: "https://help.prusa3d.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Tree / Organic Supports:</strong> Hollow, branch-like pillars that grow up from the build plate around your model to hold up floating sections, touching the part only where strictly necessary.</li>
+              <li><strong>Bridging (Brückendruck):</strong> Printing a flat horizontal roof between two pillars in mid-air by pulling taut strands of plastic across the gap.</li>
+              <li><strong>Top Z-Distance:</strong> The tiny vertical air gap between the tip of the support structure and your actual part so they don't fuse together permanently.</li>
+            </ul>
+          </div>
+          <h3>How to Avoid Scars from Support Material</h3>
+          <p>Nothing ruins a clean 3D print faster than support material that welds itself so tightly to your model that you need pliers and a knife to rip it off—leaving an ugly, scarred underside. Modern slicers give you full control over how supports behave.</p>
+          <h3>Step-by-Step Support Settings</h3>
+          <ol>
+            <li><strong>The 45-Degree & Bridge Rule:</strong> You do NOT need supports for angles up to 45–55 degrees, nor for straight horizontal bridges up to 20–30 mm wide! Modern cooling fans freeze bridged strands in mid-air.</li>
+            <li><strong>Use Tree (Auto) Supports + "On Build Plate Only":</strong> Switch support type to <code>Tree (auto)</code> and check <code>On build plate only</code>. That way, branches grow cleanly from the metal plate instead of scarring the lower surfaces of your model.</li>
+            <li><strong>Tune Top Z-Distance:</strong> Set <code>Top Z distance</code> to <strong>0.20 mm</strong> (when printing at 0.20 mm layer height) and set <code>Top interface layers</code> to <code>2 or 3</code>. The supports will snap off with two fingers like breaking a thin chocolate bar!</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Baumstützen (Tree / Organic Supports):</strong> Hohle, astförmige Stützen, die vom Druckbett aus elegant um dein Modell herumwachsen und nur dort andocken, wo wirklich in die Luft gedruckt werden müsste.</li>
+              <li><strong>Brücke (Bridging):</strong> Wenn der Drucker zwischen zwei Pfeilern eine waagerechte Decke frei durch die Luft spannt (wie ein Spinnennetz).</li>
+              <li><strong>Oberer Z-Abstand:</strong> Der winzige Luftspalt zwischen der Oberkante der Stütze und deinem eigentlichen Bauteil, damit beide nicht unlösbar miteinander verschmelzen.</li>
+            </ul>
+          </div>
+          <h3>Nie wieder hässliche Narben durch festgebackene Stützen</h3>
+          <p>Jeder Einsteiger kennt den Frust: Man aktiviert im Slicer einfach „Stützstruktur“, und nach dem Druck ist das Bauteil so fest mit dem Stützblock verschmolzen, dass man mit der Zange ranmuss und eine völlig verkratzte Unterseite zurückbleibt.</p>
+          <h3>Schritt-für-Schritt zu Stützen, die sich mit zwei Fingern lösen</h3>
+          <ol>
+            <li><strong>Wann brauchst du überhaupt Stützen?</strong> Schrägen bis ca. 50 Grad sowie gerade, waagerechte Brücken (z. B. Fensteröffnungen bis 25 mm Breite) druckt ein moderner Drucker völlig <strong>ohne</strong> Stützen frei durch die Luft!</li>
+            <li><strong>Baumstützen + „Nur auf Druckplatte“:</strong> Stelle den Typ im Slicer unter <em>Stützstruktur</em> auf <code>Baum (Auto)</code> und setze den Haken bei <code>Nur auf Druckplatte</code>. So wachsen die Äste vom Druckbett aus um dein Modell herum, statt auf deinem Bauteil selbst hässliche Abdrücke zu hinterlassen.</li>
+            <li><strong>Der Geheimwert (Oberer Z-Abstand):</strong> Stelle den <code>Oberen Z-Abstand</code> auf exakt <strong>0,20 mm</strong> (bei 0,20 mm Schichthöhe). Dadurch kühlt die Stütze kurz ab, bevor dein Bauteil darauf abgelegt wird – nach dem Druck knackst du die Stütze mühelos in einem Stück ab!</li>
+          </ol>
+        `
+      },
+      {
+        group: "3D",
+        cat_en: "3D Printing & Slicing", cat_de: "3D-Druck & Slicing",
+        title_en: "11. Flow Rate, Pressure Advance & Seam Hiding",
+        title_de: "11. Flow-Kalibrierung, Pressure Advance & Z-Naht",
+        teaser_en: "How to eliminate vertical zits, bulging corners, and over-extruded top surfaces for flawless prints.",
+        teaser_de: "Wie du die sichtbare Z-Naht versteckst, wulstige Ecken glättest und spiegelglatte Deckschichten erzielst.",
+        sources: [
+          { name: "OrcaSlicer & Bambu Calibration Wiki", url: "https://wiki.bambulab.com" },
+          { name: "Ellis' Print Tuning Guide", url: "https://ellis3dp.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Z-Seam (Z-Naht):</strong> Every outer wall loop has a start and end point. Where the nozzle stops and steps up to the next layer, a tiny vertical line or dot ("seam") remains visible.</li>
+              <li><strong>Flow Ratio (Flussrate):</strong> Controls whether the printer pushes 100%, 98%, or 102% plastic through the nozzle to match the exact filament diameter.</li>
+              <li><strong>Pressure Advance (K-Factor):</strong> Compensates for pressure buildup inside the hot nozzle so corners stay sharp at high speeds.</li>
+            </ul>
+          </div>
+          <h3>Why High-Speed Printers Need Pressure Compensation</h3>
+          <p>Imagine squeezing a tube of toothpaste: When you start squeezing, nothing comes out for a split second; when you stop squeezing, paste keeps oozing out because of internal pressure. A 3D printer hotend acts the exact same way! When your printer slows down from 300 mm/s for a sharp 90° corner, excess plastic oozes out and creates a round, swollen bulge.</p>
+          <h3>Step-by-Step Surface Tuning</h3>
+          <ol>
+            <li><strong>Auto or Manual Pressure Advance (K-Factor):</strong> On printers like the Bambu Lab A1, enable <code>Flow Dynamics Calibration</code> before printing (or run the Line/Tower test in the Calibration tab). A typical PLA K-value sits around <code>0.020</code>; PETG around <code>0.035–0.045</code>.</li>
+            <li><strong>Hide the Z-Seam:</strong> In your slicer, set <code>Seam position</code> to <strong>Aligned</strong> (it automatically hides the seam inside a sharp inner or outer corner). For round cylinders without corners, enable <strong>Scarf Joint Seam</strong> to bevel the start and end together almost invisibly!</li>
+            <li><strong>Ironing for Flat Tops (Glätten):</strong> Want a top surface that looks like injection-molded plastic? Enable <code>Ironing > All Top Surfaces</code> in your slicer—the hot nozzle will glide over the final layer a second time with just 10–15% flow to polish it smooth.</li>
+          </ol>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Z-Naht (Seam):</strong> Jede Außenwand-Runde muss irgendwo anfangen und enden. Genau an diesem Punkt entsteht eine feine senkrechte Linie am Bauteil (wie die Naht an einem T-Shirt).</li>
+              <li><strong>Flussrate (Flow Ratio):</strong> Regelt, wie viel Prozent Plastik durch die Düse gefördert wird, damit die Deckschicht weder Löcher noch raue Überstände hat.</li>
+              <li><strong>Pressure Advance (K-Faktor):</strong> Gleicht den Staudruck in der heißen Düse aus, damit vor dem Abbremsen an Ecken kein dickes Plastik-Polster herausquillt.</li>
+            </ul>
+          </div>
+          <h3>Das Zahnpasta-Prinzip in deiner Druckerdüse</h3>
+          <p>Stell dir eine Zahnpastatube vor: Wenn du aufhörst zu drücken, quillt durch den Innendruck trotzdem noch ein kleiner Klecks heraus. Genau das passiert im Hotend deines 3D-Druckers, wenn er mit 300 mm/s auf eine 90°-Ecke zurast und plötzlich abbremst: Ohne Gegensteuerung entstehen runde, dicke Wulste an jeder Ecke.</p>
+          <h3>Schritt-für-Schritt zu spiegelglatten Oberflächen</h3>
+          <ol>
+            <li><strong>Flussdynamik (Pressure Advance) nutzen:</strong> Aktiviere beim Bambu Lab A1 vor dem Druck die automatische <code>Flussdynamik-Kalibrierung</code> (oder führe im Slicer oben unter <em>Kalibrierung</em> einmalig den 5-Minuten-Linientest für dein Filament durch). Deine Ecken werden sofort messerscharf!</li>
+            <li><strong>Die Z-Naht unsichtbar machen:</strong> Stelle die <code>Nahtposition</code> im Slicer auf <strong>Ausgerichtet (Aligned)</strong> – der Slicer versteckt die Naht dann automatisch in einer scharfen Kante. Bei komplett runden Dosen oder Vasen aktivierst du zusätzlich die <strong>Schäftungsnaht (Scarf Seam)</strong>, die den Übergang flach ausschleift.</li>
+            <li><strong>Oberflächen glätten (Ironing):</strong> Für Schilder, Deckel oder Untersetzer kannst du unter <em>Qualität > Glätten</em> die Option <code>Alle oberen Oberflächen</code> aktivieren. Die heiße Düse bügelt dann ganz am Ende noch einmal über die Deckschicht und zaubert eine glänzende Spritzguss-Optik!</li>
+          </ol>
+        `
+      },
+      {
+        group: "3D",
+        cat_en: "3D Printing & Slicing", cat_de: "3D-Druck & Slicing",
+        title_en: "12. Multi-Color Purge Reduction & Vase Mode",
+        title_de: "12. Mehrfarbdruck ohne Müll & Vasen-Modus",
+        teaser_en: "How to cut filament waste ('Printer Poop') by 60%—and how to print thick, waterproof planters with a 0.4mm nozzle.",
+        teaser_de: "Wie du den Filament-Abfall („Printer Poop“) um bis zu 60 % senkst – und mit einer 0,4-mm-Düse extrem dicke Vasen druckst.",
+        sources: [
+          { name: "Bambu Lab Reduce Purge Waste Guide", url: "https://wiki.bambulab.com" },
+          { name: "CNC Kitchen Vase Mode Line Widths", url: "https://www.cnckitchen.com" }
+        ],
+        content_en: `
+          <div class="glossary-box">
+            <strong>Beginner's Glossary (Explained Simply):</strong>
+            <ul>
+              <li><strong>Purge / Flushing Volume (Spülvolumen):</strong> When switching from black to white filament in a single nozzle, the printer must purge out a small coil of plastic ("poop") until the old color is gone.</li>
+              <li><strong>Flush into Infill:</strong> A clever slicer setting that hides the color-change transition inside the invisible interior of your model instead of throwing it into the waste bin!</li>
+              <li><strong>Spiral Vase Mode:</strong> A special printing mode where the Z-axis rises continuously in one unbroken corkscrew spiral—zero seams, zero retractions!</li>
+            </ul>
+          </div>
+          <h3>Part A: Stopping the Multi-Color Waste Mountain</h3>
+          <p>Even with a big universal poop container next to your printer, nobody wants to waste 150 grams of filament on a 40-gram model. If a 3D model changes colors on 300 vertical layers, the printer purges 300 times—whether you print 1 figurine or 10 figurines on the plate!</p>
+          <ol>
+            <li><strong>Lower the Flushing Multiplier:</strong> In your slicer, click <code>Flushing Volumes</code> above the filament list and lower the multiplier from <code>1.00</code> to <strong>0.65 or 0.70</strong>.</li>
+            <li><strong>Enable "Flush into Object's Infill":</strong> Check this box under <em>Others</em> so color transitions are used as structural internal infill instead of landing in the chute.</li>
+          </ol>
+          <h3>Part B: The 0.8mm Line-Width Trick for Vase Mode</h3>
+          <p>Think Vase Mode only produces flimsy, paper-thin cups? Here is the secret: A standard <code>0.4 mm</code> nozzle has a flat tip ring of almost 1.0 mm! In your slicer, enable <strong>Spiral Vase</strong>, and then go to <em>Quality > Line Width > Outer Wall</em> and type <strong>0.80 mm</strong> (along with a slow speed of <code>45 mm/s</code> and +10°C nozzle temp). Your 0.4 mm nozzle will extrude a massive, rock-solid, 100% waterproof 0.8 mm wall without a single seam!</p>
+        `,
+        content_de: `
+          <div class="glossary-box">
+            <strong>Anfänger-Glossar (Einfach erklärt):</strong>
+            <ul>
+              <li><strong>Reinigungsvolumen (Flushing Volume / „Poop“):</strong> Beim Farbwechsel in einer einzigen Düse (z. B. von Schwarz auf Weiß) muss der Drucker so lange altes Plastik ausspülen, bis die neue Farbe sauber ist.</li>
+              <li><strong>In Infill spülen:</strong> Ein genialer Slicer-Trick, bei dem der Drucker den Farbwechsel einfach unsichtbar im Inneren deines Bauteils versteckt, statt ihn in den Müllbehälter zu werfen!</li>
+              <li><strong>Spiralvasen-Modus (Vase Mode):</strong> Der Drucker fährt in einer einzigen, endlosen Korkenzieher-Spirale nach oben – komplett ohne Z-Naht und ohne Absetzen!</li>
+            </ul>
+          </div>
+          <h3>Teil A: So halbierst du den Filament-Müll beim Mehrfarbdruck</h3>
+          <p>Selbst mit einem großen „Shit Happens“-Auffangbehälter neben dem Drucker möchte niemand unnötig Filament verschwenden. Wichtig zu verstehen: Ein Farbwechsel pro Schicht kostet immer gleich viel Müll – egal ob 1 Figur oder 8 Figuren gleichzeitig auf dem Druckbett stehen!</p>
+          <ol>
+            <li><strong>Spül-Multiplikator senken:</strong> Klicke im Slicer über deinen Filamentfarben auf <code>Reinigungsvolumina</code> und senke den Multiplikator von <code>1,00</code> auf <strong>0,65 bis 0,70</strong>.</li>
+            <li><strong>In die Füllung spülen:</strong> Aktiviere unter <em>Andere > Spüloptionen</em> den Haken bei <code>In die Füllung des Objekts spülen</code> (Achtung: nur bei dunklem Kern in hellem Gehäuse aufpassen, damit nichts durchscheint).</li>
+          </ol>
+          <h3>Teil B: Der 0,8-mm-Geheimtrick für bombenfeste Vasen & Übertöpfe</h3>
+          <p>Du glaubst, der Vasen-Modus erzeugt nur dünne, wackelige Becher? Weit gefehlt! Auch mit einer normalen <strong>0,4-mm-Standarddüse</strong> kannst du doppelt so dicke Wände drucken: Aktiviere unter <em>Andere</em> die <code>Spiralvase</code> und stelle danach unter <em>Qualität > Linienbreite > Außenwand</em> den Wert mutig von 0,42 mm auf <strong>0,80 mm</strong> hoch (Druckgeschwindigkeit dabei auf gemütliche <code>45–60 mm/s</code> senken). Du erhältst extrem druckfeste, 100 % wasserdichte Design-Vasen ohne eine einzige sichtbare Naht!</p>
+        `
+      }
+    ];
+
+    // 4. DAILY 24H ROTATING NEWS POOL (STORYTELLER / MODERATOR STYLE + VERIFIED SOURCES)
+    const newsPoolData = [
+      {
+        category: "3D Printing & Slicers",
+        title_en: "AI-Assisted Slicing & Adaptive Layer Physics: Is Manual Calibration Dying Out?",
+        title_de: "KI-gestütztes Slicing & Adaptive Layer-Physik: Stirbt das manuelle Kalibrieren aus?",
+        teaser_en: "New open-source slicer algorithms automatically detect overhangs, bridges, and weak joints before you even click print.",
+        teaser_de: "Neue Slicer-Algorithmen erkennen kritische Überhänge, Brücken und Schwachstellen vollautomatisch vor dem ersten Druckbefehl.",
+        sources: [
+          { name: "All3DP Slicer News", url: "https://all3dp.com" },
+          { name: "Bambu Lab Wiki & Release Notes", url: "https://wiki.bambulab.com" },
+          { name: "GitHub OrcaSlicer Releases", url: "https://github.com/SoftFever/OrcaSlicer" }
+        ],
+        content_en: `
+          <h3>The Story Behind the Headline</h3>
+          <p>Remember the days when we spent entire weekends printing calibration cubes, temperature towers, and retraction tests just to get a single spool of PETG to behave? Looking at the latest slicer updates rolling out across the maker ecosystem right now, we are witnessing a quiet revolution. Slicers are no longer "dumb G-code translators"—they are turning into geometry-aware physics engines.</p>
+          <div class="story-box">
+            <h4>🎙️ Moderator's Perspective: How Does This Affect Us as Everyday Makers?</h4>
+            <p>For beginners, the barrier to entry is dropping to almost zero. You drop a complex functional bracket onto the virtual plate, and the software automatically thickens walls around screw holes while slowing down on steep overhangs. For experienced makers, this frees up massive time: instead of fighting slicer quirks, we can spend 90% of our energy in CAD designing better mechanics.</p>
+          </div>
+          <h3>What Can We Expect Next—And How Will It Shape the Future?</h3>
+          <p>We are heading toward closed-loop slicing. Soon, optical sensors and eddy-current probes on the toolhead won't just calibrate the first layer—they will feed real-time layer data back into the slicer profile for your next print. Ask yourself: <em>When the printer handles all the physics automatically, what separates a good maker from a great one?</em> The answer is clear: true CAD engineering and creative problem-solving!</p>
+        `,
+        content_de: `
+          <h3>Die Geschichte hinter der Meldung</h3>
+          <p>Erinnerst du dich noch an die Zeiten, in denen man ein ganzes Wochenende lang Testwürfel, Temperatur-Türme und Retraction-Tests gedruckt hat, nur um eine einzige Rolle PETG zu bändigen? Wenn man sich die aktuellen Slicer-Entwicklungen rund um Bambu Studio, OrcaSlicer und PrusaSlicer anschaut, erleben wir gerade eine stille Revolution: Slicer sind keine „dummen G-Code-Übersetzer“ mehr, sondern werden zu mitdenkenden Physik-Assistenten.</p>
+          <div class="story-box">
+            <h4>🎙️ Was bedeutet das für uns als Endanwender am Schreibtisch?</h4>
+            <p>Für Einsteiger sinkt die Frustgrenze gegen null: Du wirfst ein komplexes Bauteil auf das virtuelle Druckbett, und der Slicer verstärkt automatisch die Zonen rund um Schraubenlöcher, während er bei kritischen Überhängen auf den Punkt genau abbremst. Und für uns erfahrene Maker? Wir gewinnen wertvolle Lebenszeit zurück – weniger Slicer-Fehlersuche, mehr Zeit für kreatives Konstruieren im CAD!</p>
+          </div>
+          <h3>Wohin geht die Reise – und wie formt das unsere Zukunft?</h3>
+          <p>Der nächste logische Schritt ist der geschlossene Regelkreis (Closed-Loop Printing): Sensoren am Druckkopf prüfen nicht mehr nur die erste Schicht, sondern melden minimale Abweichungen live zurück. Die spannende Frage an dich: <em>Wenn der Drucker bald jeden Parameter perfekt allein regelt – was macht dann noch den Unterschied?</em> Ganz klar: Die Idee im Kopf und die Fähigkeit, eigene Lösungen am Bildschirm selbst zu konstruieren!</p>
+        `
+      },
+      {
+        category: "Parametric CAD & AI",
+        title_en: "Direct Neural-to-STEP Workflows: Can AI Really Replace Parametric Sketching?",
+        title_de: "KI-CAD & Direkter STEP-Export: Kann KI das echte Konstruieren wirklich ersetzen?",
+        teaser_en: "From text prompts to editable CAD timelines: Where AI generators shine today—and where human first-principles thinking remains unbeatable.",
+        teaser_de: "Vom Textbefehl zur echten CAD-Datei: Wo KI-Assistenten heute schon glänzen – und warum eigenes First-Principles-Denken unersetzbar bleibt.",
+        sources: [
+          { name: "Autodesk Research & AI Blog", url: "https://www.autodesk.com" },
+          { name: "Engineering.com CAD Report", url: "https://www.engineering.com" }
+        ],
+        content_en: `
+          <h3>The Story Behind the Headline</h3>
+          <p>For years, 3D AI generators only spat out messy, organic polygon meshes—fun for miniature figurines, but completely useless if you needed a precision mount with 0.15 mm tolerances. Now, with Model Context Protocol (MCP) bridges like SolidCraft and native CAD assistants, AI is learning to speak true B-Rep (Boundary Representation) geometry and export clean STEP files.</p>
+          <div class="story-box">
+            <h4>🎙️ Moderator's Perspective: What Does This Mean for Our Workflow?</h4>
+            <p>Let's be honest: An AI doesn't know how tight your specific WAGO terminal needs to snap into a ceiling mount, or how water drains on your balcony. Where these new tools truly help us as end users is eliminating repetitive "grunt work"—like generating standard enclosures, bolt patterns, or base plates in seconds so we can focus on the custom details in Fusion 360.</p>
+          </div>
+          <h3>How Will This Shape the Future of Hardware Design?</h3>
+          <p>We won't stop using CAD—we will become "Hardware Architects." Instead of clicking 50 lines for a simple flange, you will define the physical constraints and let the CAD solver build the base, then refine it by hand. What would you build first if sketching took half the time?</p>
+        `,
+        content_de: `
+          <h3>Die Geschichte hinter der Meldung</h3>
+          <p>Lange Zeit konnten KI-Generatoren im 3D-Bereich nur ungenaue Polygon-Netze ausspucken – nett für Deko-Figuren, aber völlig unbrauchbar, wenn man eine präzise Halterung mit 0,15 mm Spaltmaß braucht. Durch neue Schnittstellen (wie MCP-Steuerungen in SolidCraft und KI-Helfer in modernen CAD-Suiten) lernt Software nun, echte mathematische Körper und saubere STEP-Dateien zu erzeugen.</p>
+          <div class="story-box">
+            <h4>🎙️ Wie beeinflusst uns das als Maker in der Praxis?</h4>
+            <p>Seien wir ehrlich: Keine KI der Welt weiß aus dem Stegreif, wie straff deine WAGO-Klemme einrasten soll oder wie das Regenwasser auf deinem Balkon abläuft. Aber als Co-Pilot nimmt uns die Technik die langweilige Fleißarbeit ab! Grundplatten, Lochbilder oder Standard-Gehäuse entstehen auf Zuruf in Sekunden – und den spannenden Feinschliff erledigen wir selbst in Fusion 360.</p>
+          </div>
+          <h3>Wie wird das die Zukunft des Konstruierens verändern?</h3>
+          <p>Das klassische CAD verschwindet nicht, aber unsere Rolle verändert sich: Vom reinen „Linien-Zeichner“ zum echten Hardware-Architekten, der das Problem nach First Principles durchdenkt. Hand aufs Herz: <em>Welches Projekt schiebst du schon lange vor dir her, weil dir bisher die Zeit für das Grundgerüst gefehlt hat?</em></p>
+        `
+      },
+      {
+        category: "FPV & Maker Hardware",
+        title_en: "Sub-250g Digital HD Evolution & Custom 3D-Printed Airframe Armor",
+        title_de: "Die Sub-250g HD-Revolution: Warum 3D-Druck und FPV-Drohnen verschmelzen",
+        teaser_en: "Ultra-light digital video transmitters like the O4 Lite are changing how we build, protect, and fly compact quadcopters.",
+        teaser_de: "Ultraleichte HD-Systeme wie die O4 Lite verändern radikal, wie wir kompakte Copter bauen, im CAD schützen und fliegen.",
+        sources: [
+          { name: "Oscar Liang FPV Tech Blog", url: "https://oscarliang.com" },
+          { name: "Betaflight Official Releases", url: "https://betaflight.com" },
+          { name: "All3DP Drone Printing Guide", url: "https://all3dp.com" }
+        ],
+        content_en: `
+          <h3>The Story Behind the Headline</h3>
+          <p>Not long ago, flying crystal-clear 1080p digital FPV meant strapping a heavy, hot air unit onto a loud 5-inch quadcopter. Today, ultra-lightweight digital systems (like the O4 Lite generation paired with compact goggles and ELRS pocket radios) bring high-definition digital links down into 75mm whoops and agile 3.5-inch cruisers.</p>
+          <div class="story-box">
+            <h4>🎙️ Moderator's Perspective: Why Is This a Golden Era for 3D-Printing Pilots?</h4>
+            <p>Every gram counts in sub-250g builds, and sensitive HD camera lenses hate concrete walls! As a pilot with a 3D printer and CAD skills, you are completely independent of spare-part shortages. Need a 2-gram TPU canopy with a custom camera tilt angle or a vibration-isolated O4 mount? You model it in 15 minutes and print it on your desk for 5 cents of TPU.</p>
+          </div>
+          <h3>What Can We Expect in the Coming Months?</h3>
+          <p>Expect an explosion of open-source "hybrid frames"—carbon fiber cores combined with modular, 3D-printed TPU/PETG exo-skeletons shared across MakerWorld and Printables. The line between buying a drone and printing your own custom rig is blurring faster than ever!</p>
+        `,
+        content_de: `
+          <h3>Die Geschichte hinter der Meldung</h3>
+          <p>Noch vor kurzer Zeit bedeutete gestochen scharfes Digital-FPV automatisch: schwere Video-Einheiten, große 5-Zoll-Copter und hohe Hürden. Heute bringen federleichte HD-Systeme (wie die O4-Lite-Klasse in Kombination mit kompakten Brillen wie der Goggles N3 und ELRS-Pocket-Funken) echtes HD-Feeling in winzige 75-mm-Whoops und wendige 3,5-Zoll-Freestyler.</p>
+          <div class="story-box">
+            <h4>🎙️ Was bedeutet das für uns als Piloten mit eigenem 3D-Drucker?</h4>
+            <p>Wir leben in der absoluten Goldgrube für Maker! Bei ultraleichten Coptern zählt jedes einzelne Gramm, und gleichzeitig müssen empfindliche HD-Kameras bei Crashes perfekt geschützt und vibrationsfrei gelagert werden. Wer selbst in Fusion 360 konstruieren und TPU drucken kann, ist komplett unabhängig von teuren Ersatzteilen: Neuer Kamerawinkel? Eigener Antennenhalter? In 15 Minuten gezeichnet, für 5 Cent gedruckt!</p>
+          </div>
+          <h3>Was erwartet uns in naher Zukunft?</h3>
+          <p>Immer mehr Hersteller veröffentlichen direkt zum Verkaufsstart offizielle STEP-Dateien ihrer Kameras und Frames. Dadurch wächst auf Plattformen wie Printables und MakerWorld ein riesiges Ökosystem aus maßgeschneiderten Mods. <em>Fliegst du noch von der Stange – oder druckst du schon dein eigenes Setup?</em></p>
+        `
+      },
+      {
+        category: "Materials & Desktop Manufacturing",
+        title_en: "Engineering Filaments on Open Desktop Printers: Next-Gen PETG & Fiber Blends",
+        title_de: "Hightech-Filamente für Zuhause: Neue PETG- & Faser-Mischungen ohne Spezialdrucker",
+        teaser_en: "New polymer formulations reduce warping and stringing so dramatically that open-frame printers can produce industrial-grade parts.",
+        teaser_de: "Neue Kunststoff-Rezepturen minimieren Verzug und Fädenziehen so stark, dass selbst offene Drucker echte Industrieteile fertigen.",
+        sources: [
+          { name: "CNC Kitchen Material Tests", url: "https://www.cnckitchen.com" },
+          { name: "Prusa Polymers & Prusament Blog", url: "https://blog.prusa3d.com" }
+        ],
+        content_en: `
+          <h3>The Story Behind the Headline</h3>
+          <p>Historically, printing tough mechanical parts meant dealing with smelly, warping ABS inside a heated chamber—or fighting endless stringing with old-school PETG. Now, chemical manufacturers are reformulating co-polyesters and high-flow PETG blends specifically tuned for high-speed desktop printers like the Bambu Lab A1.</p>
+          <div class="story-box">
+            <h4>🎙️ Moderator's Perspective: How Does This Change Our Home Workshop?</h4>
+            <p>You no longer need a €2,000 industrial machine to print weather-proof garden systems, car interior clips, or heavy-duty workshop brackets. These new filaments print almost as cleanly and fast as basic PLA while offering genuine thermal and mechanical resilience.</p>
+          </div>
+          <h3>Looking Ahead: What Is the Next Frontier?</h3>
+          <p>Recyclability and smart spool telemetry. As we print more functional items for our homes and balconies, long-lasting materials that don't degrade in UV light will turn every home 3D printer into a genuine household appliance repair station.</p>
+        `,
+        content_de: `
+          <h3>Die Geschichte hinter der Meldung</h3>
+          <p>Früher galt ein eisernes Gesetz: Wer wirklich belastbare, hitzebeständige Technik-Bauteile drucken wollte, brauchte einen geschlossenen, beheizten Bauraum für stinkendes ABS – oder musste sich mit fädenziehendem Standard-PETG herumschlagen. Aktuell bringen Filamenthersteller jedoch völlig neu abgestimmte High-Flow-PETG- und Co-Polyester-Mischungen auf den Markt, die speziell für schnelle, offene Drucker wie den Bambu Lab A1 entwickelt wurden.</p>
+          <div class="story-box">
+            <h4>🎙️ Wie verändert das unsere heimische Werkstatt?</h4>
+            <p>Du brauchst heute keine 2.000-Euro-Industriemaschine mehr, um sturmfeste Balkon-Pflanzsysteme, Halterungen fürs Auto oder hochbelastbare Werkzeuge zu drucken. Die neuen Mischungen drucken sich fast so zahm und sauber wie normales PLA, halten aber Sonne, Regen und mechanischer Dauerlast mühelos stand.</p>
+          </div>
+          <h3>Der Blick in die Zukunft: Wohin entwickelt sich das?</h3>
+          <p>Der 3D-Drucker wandelt sich endgültig vom „Spielzeug für Deko-Figuren“ zur vollwertigen Haus- und Reparatur-Werkstatt. Wenn ein Kunststoffteil im Haushalt bricht, wird es nicht mehr nachgekauft, sondern noch stabiler selbst konstruiert und gedruckt!</p>
+        `
+      },
+      {
+        category: "Creator Economy & Open Hardware",
+        title_en: "3D Model Platforms Evolve: Why Modular & Parametric Uploads Are Winning",
+        title_de: "Plattform-Trend 2026: Warum modulare & anpassbare Designs die Charts stürmen",
+        teaser_en: "Across MakerWorld, Printables, and Creality Cloud, users are shifting away from static trinkets toward customizable functional systems.",
+        teaser_de: "Auf MakerWorld, Printables und Creality Cloud zeigt sich ein klarer Trend: Clevere Alltagshelfer und modulare Systeme schlagen reine Deko.",
+        sources: [
+          { name: "MakerWorld Creator Portal", url: "https://makerworld.com/de/@SpawnItems/upload" },
+          { name: "Printables Community Trends", url: "https://www.printables.com/@SpawnItems_2202114/models" },
+          { name: "All3DP Community Report", url: "https://all3dp.com" }
+        ],
+        content_en: `
+          <h3>The Story Behind the Headline</h3>
+          <p>Take a look at the trending charts on Printables, MakerWorld, and Creality Cloud today. While cute articulated dragons had their moment, the most downloaded and liked uploads right now are practical workshop tools, clever purge containers, modular sorting boxes, and smart-home mounts.</p>
+          <div class="story-box">
+            <h4>🎙️ Moderator's Perspective: What Does This Mean for Creators & Users?</h4>
+            <p>As end users, we want our printers to solve real everyday problems—organizing puzzles, tidying up electrical wiring, or upgrading our printer setup. And for creators like SpawnItems, offering well-thought-out, tested functional series (like ergonomic grip tiers or modular drainage pots) builds lasting community trust and thousands of organic downloads.</p>
+          </div>
+          <h3>How Will This Shape the Maker Community?</h3>
+          <p>We are moving into the era of "Parametric Customization in the Browser." Users won't just download a static file—they will pick the exact size variant they need and print it with one click directly from their phone.</p>
+        `,
+        content_de: `
+          <h3>Die Geschichte hinter der Meldung</h3>
+          <p>Wirft man heute einen Blick in die Download-Charts auf MakerWorld, Printables oder Creality Cloud, fällt ein spannender Wandel auf: Während vor zwei Jahren noch bewegliche Deko-Drachen alles dominierten, suchen Tausende Nutzer heute gezielt nach cleveren Problemlösern – vom universellen Purge-Auffangbehälter über stapelbare Puzzle-Sortierboxen bis hin zu ergonomischen Werkzeuggriffen und WAGO-Halterungen.</p>
+          <div class="story-box">
+            <h4>🎙️ Was heißt das für uns als Nutzer und Creator?</h4>
+            <p>Als Endanwender wollen wir, dass sich unser Drucker im Alltag nützlich macht: Ordnung schaffen, Smart-Home-Geräte sauber an der Decke montieren oder den Balkon begrünen. Und für uns Konstrukteure zeigt es: Wer echte Alltagsprobleme mit durchdachten Toleranzen und Varianten (z. B. Beginner / Advanced / Pro) löst, trifft genau den Nerv der Community!</p>
+          </div>
+          <h3>Wie sieht die Plattform-Zukunft aus?</h3>
+          <p>Modulare Baukastensysteme sind die Zukunft. Statt hunderter einzelner Wegwerf-Dateien entstehen ganze Systeme, die man jederzeit erweitern und kombinieren kann. <em>Welcher kleine Alltagshelfer aus dem 3D-Drucker hat dir bisher den größten Nutzen im Haus gebracht?</em></p>
+        `
+      }
+    ];
+
+    const platformsData = [
+      { name: "MakerWorld", handle: "@SpawnItems", badge: "Lv. 15 Creator", stats: "12 Models • 477 Downloads • 314 Likes", url: "https://makerworld.com/de/@SpawnItems/upload" },
+      { name: "Creality Cloud", handle: "SpawnsItems", badge: "12.4k+ Views", stats: "10 Models • 422 Likes • Exclusives", url: "https://www.crealitycloud.com/de/user/6663663058/model" },
+      { name: "Printables", handle: "@SpawnItems_2202114", badge: "Lvl 9 Maniac", stats: "13 Models • 779 Downloads • 248 Likes", url: "https://www.printables.com/@SpawnItems_2202114/models" },
+      { name: "Thangs 3D", handle: "Patrik Spawn's Items", badge: "3D Repository", stats: "38+ Models Repository", url: "https://thangs.com/designer/Patrik%20Spawn%27s%20Items" }
+    ];
+
+    // 24-HOUR AUTOMATED ROTATION ENGINE FOR NEWS & ARCHIVE
+    function get24hNewsSplit() {
+      const now = new Date();
+      const dayEpoch = Math.floor(now.getTime() / 86400000);
+      const todayStr = now.toISOString().split('T')[0];
+
+      const active = [];
+      const archived = [];
+
+      for (let i = 0; i < newsPoolData.length; i++) {
+        const idx = (dayEpoch + i) % newsPoolData.length;
+        const item = Object.assign({}, newsPoolData[idx]);
+        if (i < 3) {
+          item.displayDate = todayStr + " (24h Live)";
+          active.push(item);
+        } else {
+          const pastDate = new Date(now.getTime() - ((i - 2) * 86400000)).toISOString().split('T')[0];
+          item.displayDate = pastDate;
+          archived.push(item);
+        }
+      }
+      active.forEach((actItem) => {
+        const logCopy = Object.assign({}, actItem);
+        logCopy.displayDate = todayStr + " (Active 24h)";
+        archived.unshift(logCopy);
+      });
+
+      return { active, archived, todayStr };
+    }
+
+    const newsSplit = get24hNewsSplit();
+
+    function filterTutorials(group) {
+      currentTutFilter = group;
+      const btnAll = document.getElementById('filter-all');
+      const btnCad = document.getElementById('filter-cad');
+      const btn3d = document.getElementById('filter-3d');
+      const activeClass = "px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider bg-emerald-500 text-gray-950 font-semibold transition-all cursor-pointer";
+      const inactiveClass = "px-4 py-2 rounded-xl text-xs font-mono uppercase tracking-wider bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 transition-all cursor-pointer";
+
+      btnAll.className = group === 'all' ? activeClass : inactiveClass;
+      btnCad.className = group === 'CAD' ? activeClass : inactiveClass;
+      btn3d.className = group === '3D' ? activeClass : inactiveClass;
+
+      renderTutorials(currentLang);
+    }
+
+    function renderTutorials(lang) {
+      const ui = uiStrings[lang];
+      const filtered = tutorialsData
+        .map((tut, originalIndex) => ({ tut, originalIndex }))
+        .filter(item => currentTutFilter === 'all' || item.tut.group === currentTutFilter);
+
+      document.getElementById('tutorials-grid').innerHTML = filtered.map(({ tut, originalIndex }) => `
+        <div class="bento-card p-6 rounded-2xl flex flex-col justify-between group cursor-pointer" onclick="openModal('tutorial', ${originalIndex})">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">${lang === 'de' ? tut.cat_de : tut.cat_en}</span>
+              <span class="text-[11px] font-mono text-gray-400">10/10 Guide</span>
+            </div>
+            <h3 class="text-lg font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">${lang === 'de' ? tut.title_de : tut.title_en}</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-5">${lang === 'de' ? tut.teaser_de : tut.teaser_en}</p>
+          </div>
+          <div class="pt-3 border-t border-white/5 text-xs font-mono text-emerald-400 flex items-center justify-between">
+            <span class="group-hover:underline font-semibold">${ui.btn_open_guide}</span>
+            <i data-lucide="book-open" class="w-4 h-4 text-emerald-400"></i>
+          </div>
+        </div>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function renderAll(lang) {
+      document.documentElement.lang = lang;
+      const ui = uiStrings[lang];
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (ui[key]) el.textContent = ui[key];
+      });
+
+      document.getElementById('about-c1-text').textContent = ui.about_c1_text;
+      document.getElementById('about-c2-text').textContent = ui.about_c2_text;
+      document.getElementById('langLabel').textContent = lang === 'de' ? 'DE | EN' : 'EN | DE';
+      document.getElementById('closeModalBtn').textContent = ui.btn_close_modal;
+      document.getElementById('newsSyncBadge').textContent = (lang === 'de' ? '24h-Rotation: ' : '24h Rotation: ') + newsSplit.todayStr;
+
+      // Update Interactive Calculator Language
+      updateCalculator();
+
+      // Projects
+      document.getElementById('projects-grid').innerHTML = projectsData.map(p => `
+        <a href="${p.link}" target="_blank" class="bento-card p-6 rounded-2xl flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">${p.badge}</span>
+              <div class="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center">
+                <i data-lucide="${p.icon}" class="w-4 h-4 text-emerald-400"></i>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-emerald-400 transition-colors mb-2">${lang === 'de' ? p.title_de : p.title_en}</h3>
+            <p class="text-sm text-gray-400 leading-relaxed mb-6">${lang === 'de' ? p.desc_de : p.desc_en}</p>
+          </div>
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-gray-300">
+            <span>${p.stats}</span>
+            <span class="text-emerald-400 group-hover:underline">${ui.btn_open_model}</span>
+          </div>
+        </a>
+      `).join('');
+
+      // FPV
+      document.getElementById('fpv-grid').innerHTML = fpvData.map(f => `
+        <div class="bento-card bento-card-amber p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center mb-4">
+            <i data-lucide="${f.icon}" class="w-5 h-5 text-amber-400"></i>
+          </div>
+          <div class="text-[11px] font-mono uppercase tracking-wider text-amber-400 mb-1">${f.tag}</div>
+          <h3 class="text-lg font-bold text-white mb-2">${f.title}</h3>
+          <p class="text-sm text-gray-400 leading-relaxed">${lang === 'de' ? f.desc_de : f.desc_en}</p>
+        </div>
+      `).join('');
+
+      // Tutorials (12 Permanent Guides)
+      renderTutorials(lang);
+
+      // 24h Active News Cards
+      document.getElementById('news-grid').innerHTML = newsSplit.active.map((n, index) => `
+        <div class="bento-card bento-card-amber p-6 rounded-2xl flex flex-col justify-between cursor-pointer group" onclick="openModal('news', ${index})">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-1 rounded bg-amber-500/10 border border-amber-500/30 text-[11px] font-mono text-amber-300">${n.category}</span>
+              <span class="text-xs font-mono text-gray-400">${n.displayDate}</span>
+            </div>
+            <h3 class="text-lg font-bold text-white group-hover:text-amber-400 transition-colors mb-2">${lang === 'de' ? n.title_de : n.title_en}</h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-5">${lang === 'de' ? n.teaser_de : n.teaser_en}</p>
+          </div>
+          <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs font-mono text-amber-400">
+            <span class="group-hover:underline font-semibold">${ui.btn_open_news}</span>
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-400"></i>
+          </div>
+        </div>
+      `).join('');
+
+      // Archive Table
+      document.getElementById('archive-tbody').innerHTML = newsSplit.archived.map((a, index) => `
+        <tr class="hover:bg-white/5 transition-colors cursor-pointer" onclick="openModal('archive', ${index})">
+          <td class="py-3.5 px-4 font-mono text-xs text-gray-400 whitespace-nowrap">${a.displayDate}</td>
+          <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded bg-white/5 text-[11px] font-mono text-emerald-300">${a.category}</span></td>
+          <td class="py-3.5 px-4 font-medium text-white hover:text-amber-400 transition-colors">${lang === 'de' ? a.title_de : a.title_en}</td>
+          <td class="py-3.5 px-4 text-xs font-mono text-gray-400">${a.sources.map(s => s.name).join(' • ')}</td>
+        </tr>
+      `).join('');
+
+      // Platforms
+      document.getElementById('platforms-grid').innerHTML = platformsData.map(pl => `
+        <a href="${pl.url}" target="_blank" class="bento-card border-emerald-500/40 hover:border-emerald-400 p-6 rounded-2xl flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono px-2.5 py-1 rounded bg-white/5 text-gray-300 border border-white/10">${pl.badge}</span>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-400 group-hover:text-white transition-colors"></i>
+            </div>
+            <h3 class="text-2xl font-display font-bold text-white mb-1">${pl.name}</h3>
+            <div class="text-sm font-mono text-emerald-400 mb-4">${pl.handle}</div>
+            <p class="text-xs text-gray-400 mb-6">${pl.stats}</p>
+          </div>
+          <div class="w-full py-2.5 px-4 rounded-xl text-center text-xs font-semibold uppercase tracking-wider transition-all bg-emerald-500/15 text-emerald-300 group-hover:bg-emerald-500 group-hover:text-gray-950">
+            ${ui.btn_open_profile}
+          </div>
+        </a>
+      `).join('');
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function openModal(type, index) {
+      const lang = currentLang;
+      const ui = uiStrings[lang];
+      let badge = "", meta = "", title = "", content = "", sourcesArr = [];
+
+      if (type === 'tutorial') {
+        const tut = tutorialsData[index];
+        badge = lang === 'de' ? tut.cat_de : tut.cat_en;
+        meta = ui.meta_guide;
+        title = lang === 'de' ? tut.title_de : tut.title_en;
+        content = lang === 'de' ? tut.content_de : tut.content_en;
+        sourcesArr = tut.sources;
+      } else if (type === 'news') {
+        const n = newsSplit.active[index];
+        badge = n.category;
+        meta = ui.meta_news + " • " + n.displayDate;
+        title = lang === 'de' ? n.title_de : n.title_en;
+        content = lang === 'de' ? n.content_de : n.content_en;
+        sourcesArr = n.sources;
+      } else if (type === 'archive') {
+        const a = newsSplit.archived[index];
+        badge = a.category;
+        meta = ui.meta_news + " • " + a.displayDate;
+        title = lang === 'de' ? a.title_de : a.title_en;
+        content = lang === 'de' ? a.content_de : a.content_en;
+        sourcesArr = a.sources;
+      }
+
+      const sourcesLinksHtml = sourcesArr.map(s => `
+        <a href="${s.url}" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:bg-emerald-500 hover:text-gray-950 font-semibold bg-white/5 px-3 py-1.5 rounded-lg border border-emerald-500/30 transition-all inline-flex items-center space-x-1">
+          <span>${s.name}</span>
+          <span>↗</span>
+        </a>
+      `).join('');
+
+      document.getElementById('modalBadge').textContent = badge;
+      document.getElementById('modalMeta').textContent = meta;
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalContent').innerHTML = content;
+      document.getElementById('modalSourceLinkContainer').innerHTML = `<span class="text-gray-400 mr-1">${ui.lbl_sources}</span> ${sourcesLinksHtml}`;
+
+      const modal = document.getElementById('genericModal');
+      const container = document.getElementById('modalContainer');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      container.classList.remove('scale-95');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('genericModal');
+      const container = document.getElementById('modalContainer');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      container.classList.add('scale-95');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+    document.getElementById('genericModal').addEventListener('click', (e) => {
+      if (e.target.id === 'genericModal') closeModal();
+    });
+
+    document.getElementById('langToggle').addEventListener('click', () => {
+      currentLang = currentLang === 'en' ? 'de' : 'en';
+      renderAll(currentLang);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderAll('en');
+    });
+  </script>
+</body>
+</html>
